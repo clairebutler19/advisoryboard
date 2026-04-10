@@ -18,7 +18,7 @@
 </head>
 <body>
   <div id="root"></div>
-  <script type="text/babel">
+  <script type="text/babel" data-presets="react">
     const { useState } = React;
 
 
@@ -361,7 +361,7 @@ function StepBar({current}){
   );
 }
 
-export default function App(){
+function App(){
   const [ae,setAe]=useState("");
   const [customer,setCustomer]=useState(null);
   const [step,setStep]=useState(0);
@@ -775,7 +775,8 @@ export default function App(){
 }
 
 
-    const root = ReactDOM.createRoot(document.getElementById('root'));
+    const domContainer = document.getElementById('root');
+    const root = ReactDOM.createRoot(domContainer);
     root.render(React.createElement(App));
   </script>
 </body>

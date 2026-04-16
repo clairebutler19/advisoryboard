@@ -20,8 +20,8 @@
   <div id="root"></div>
   <script type="text/babel" data-presets="react">
     const { useState } = React;
- 
- 
+
+
 const B = {
   blue:"#0052F2",blueDark:"#001A4F",black:"#000000",white:"#FFFFFF",
   gray10:"#F2F4F8",gray20:"#D5D9E0",gray30:"#B9BFC7",gray50:"#868D95",
@@ -30,7 +30,7 @@ const B = {
   amber:"#D97706",amberBg:"rgba(217,119,6,0.08)",red:"#DC2626",
   font:"'Poppins','IBM Plex Sans',Arial,sans-serif",
 };
- 
+
 // ─── AMPLITUDE EXECS (confirmed, with event badges from your deck) ─────────────
 const AMPLITUDE_EXECS = {
   "San Diego CAB": [
@@ -65,7 +65,7 @@ const AMPLITUDE_EXECS = {
     {id:"ran",    name:"Ran Chen",      title:"Head of Growth, Product",      badges:["SD","LND"]},
   ],
 };
- 
+
 // Avatar color palette — deterministic by name
 const AVATAR_COLORS = [
   ["#0052F2","#EEF3FF"],["#16A34A","#F0FDF4"],["#D97706","#FFFBEB"],
@@ -77,7 +77,7 @@ function avatarColor(name){
   return AVATAR_COLORS[i];
 }
 function initials(name){return name.trim().split(/\s+/).map(w=>w[0]).join("").slice(0,2).toUpperCase();}
- 
+
 function Avatar({name,size=44}){
   const [color,bg]=avatarColor(name);
   return(
@@ -86,188 +86,252 @@ function Avatar({name,size=44}){
     </div>
   );
 }
- 
+
 // ─── AE → CUSTOMERS ──────────────────────────────────────────────────────────
 const AE_ROSTER = {
   // SAN DIEGO CAB
   "Dan Walsh":{event:"San Diego CAB",customers:[
-    {id:"abbott",      name:"Rachelle Fischer",   title:"Director, Data Science & Analytics", company:"Abbott"},
-    {id:"dq",          name:"Nick Skapyak",        title:"Sr. eCommerce Marketing Manager",    company:"Dairy Queen"},
+    {id:"abbott",      name:"Rachelle Fischer",      title:"Director, Data Science & Analytics",              company:"Abbott"},
+    {id:"dq",          name:"Nick Skapyak",           title:"Sr. eCommerce Marketing Manager",                 company:"Dairy Queen"},
   ]},
   "Mike Sullivan":{event:"San Diego CAB",customers:[
-    {id:"fox",         name:"Seth Stuck",          title:"VP, Product Research & Analytics",   company:"FOX"},
-    {id:"sxm",         name:"Gabriella Munoz",     title:"Director, Product Analytics",        company:"SiriusXM"},
+    {id:"fox",         name:"Seth Stuck",             title:"VP, Product Research & Analytics",                company:"FOX"},
+    {id:"sxm",         name:"Gabriella Munoz",        title:"Director, Product Analytics",                     company:"SiriusXM"},
   ]},
   "Greg Sharp":{event:"San Diego CAB",customers:[
-    {id:"ibm",         name:"Hima Chintalapati",   title:"Program Lead, Analytics",            company:"IBM"},
-    {id:"fanduel",     name:"Anne Billmeyer",      title:"Sr. Director, Insights & Experimentation", company:"FanDuel"},
-    {id:"cox",         name:"Travis Johnson",      title:"Product Analytics Leader",           company:"Cox Automotive"},
-    {id:"nba",         name:"Mike O'Rourke",       title:"Sr. Director, Product Analytics",   company:"NBA"},
+    {id:"ibm",         name:"Hima Chintalapati",      title:"Program Lead, Analytics",                        company:"IBM"},
+    {id:"fanduel",     name:"Anne Billmeyer",         title:"Sr. Director, Insights & Experimentation",       company:"FanDuel"},
+    {id:"cox",         name:"Travis Johnson",         title:"Product Analytics Leader",                       company:"Cox Automotive"},
+    {id:"nba",         name:"Mike O'Rourke",          title:"Sr. Director, Product Analytics",                company:"NBA"},
   ]},
   "Grace Evans":{event:"San Diego CAB",customers:[
-    {id:"mcclatchy",   name:"Amanda Hamilton",     title:"Sr. Director, Platform Operations",  company:"McClatchy"},
-    {id:"onlocation",  name:"Eric Lamy",            title:"VP, AI & Data Product",              company:"On Location / TKO"},
+    {id:"mcclatchy",   name:"Amanda Hamilton",        title:"Sr. Director, Platform Operations",              company:"McClatchy"},
+  ]},
+  "Michael McClune":{event:"San Diego CAB",customers:[
+    {id:"onlocation",  name:"Eric Lamy",              title:"VP, AI & Data Product",                          company:"On Location / TKO"},
   ]},
   "Kyle McDaniel":{event:"San Diego CAB",customers:[
-    {id:"wbd",         name:"Chuck Navarro",        title:"VP, Marketing Technology",           company:"Warner Bros. Discovery"},
+    {id:"wbd",         name:"Chuck Navarro",          title:"VP, Marketing Technology",                       company:"Warner Bros. Discovery"},
   ]},
   "Taylor Sollinger":{event:"San Diego CAB",customers:[
-    {id:"whoop",       name:"Matt Luizzi",          title:"Sr. Director of Analytics",          company:"WHOOP"},
-    {id:"bentley",     name:"Marcus Kellermann",    title:"Sr. Director, Digital Experience Engineering", company:"Bentley Systems"},
+    {id:"whoop",       name:"Matt Luizzi",            title:"Sr. Director of Analytics",                      company:"WHOOP"},
+    {id:"bentley",     name:"Marcus Kellermann",      title:"Sr. Director, Digital Experience Engineering",   company:"Bentley Systems"},
   ]},
   "Glen Horsley":{event:"San Diego CAB",customers:[
-    {id:"wu",          name:"Nagaraju Unnava",      title:"Director, Software Engineering",     company:"Western Union"},
-    {id:"qualtrics",   name:"Geoff Coyner",         title:"Head of Product Data",               company:"Qualtrics"},
+    {id:"wu",          name:"Nagaraju Unnava",        title:"Director, Software Engineering",                 company:"Western Union"},
+    {id:"qualtrics",   name:"Geoff Coyner",           title:"Head of Product Data",                           company:"Qualtrics"},
   ]},
   "Nate Harrison":{event:"San Diego CAB",customers:[
-    {id:"squarespace", name:"Lina Blackman",        title:"Director, Product Analytics",        company:"Squarespace"},
+    {id:"squarespace", name:"Lina Blackman",          title:"Director, Product Analytics",                    company:"Squarespace"},
   ]},
   "Nancy Safar":{event:"San Diego CAB",customers:[
-    {id:"td",          name:"Joseph Sansotta",      title:"Head VP, Mobile Banking & Connected Conversation Platforms", company:"TD Bank"},
+    {id:"td",          name:"Joseph Sansotta",        title:"Head VP, Mobile Banking & Connected Conversation Platforms", company:"TD Bank"},
   ]},
   "Christy Barnett":{event:"San Diego CAB",customers:[
-    {id:"heb",         name:"Matt Jenkins",         title:"Sr. Manager, Digital Analytics",     company:"H-E-B"},
+    {id:"heb",         name:"Matt Jenkins",           title:"Sr. Manager, Digital Analytics",                 company:"H-E-B"},
   ]},
   "Adam Yapkowitz":{event:"San Diego CAB",customers:[
-    {id:"pga",         name:"Matt Mullen",          title:"Director, Product Management",       company:"PGA Tour"},
+    {id:"pga",         name:"Matt Mullen",            title:"Director, Product Management",                   company:"PGA Tour"},
   ]},
   "Tyler Benham":{event:"San Diego CAB",customers:[
-    {id:"procore",     name:"Ajay Murali",          title:"Sr. Director, Data Science & Analytics", company:"Procore"},
+    {id:"procore",     name:"Ajay Murali",            title:"Sr. Director, Data Science & Analytics",         company:"Procore"},
   ]},
   "Clay Crema":{event:"San Diego CAB",customers:[
-    {id:"udemy",       name:"Deepak Thakral",       title:"VP, Product",                        company:"Udemy"},
+    {id:"udemy",       name:"Deepak Thakral",         title:"VP, Product",                                    company:"Udemy"},
   ]},
   "Sally Bregman":{event:"San Diego CAB",customers:[
-    {id:"unum",        name:"Sai Sreebhashyam",    title:"Assistant VP, Data & Analytics",     company:"Unum"},
+    {id:"unum",        name:"Sai Sreebhashyam",       title:"Assistant VP, Data & Analytics",                 company:"Unum"},
   ]},
   // SAN DIEGO EAB
   "Sonia Xavier":{event:"San Diego EAB",customers:[
-    {id:"empower",     name:"Megan Lemire",         title:"VP, Product Development & Management", company:"Empower Retirement"},
-    {id:"hearst",      name:"Robert Gash",          title:"Chief Product Officer",              company:"Hearst"},
-    {id:"realtor",     name:"Vidya Krishnakumar",   title:"SVP, Data Science, Analytics & Experimentation", company:"Realtor.com"},
+    {id:"empower",     name:"Megan Lemire",           title:"VP, Product Development & Management",           company:"Empower Retirement"},
+    {id:"hearst",      name:"Robert Gash",            title:"Chief Product Officer",                          company:"Hearst"},
+    {id:"realtor",     name:"Vidya Krishnakumar",     title:"SVP, Data Science, Analytics & Experimentation", company:"Realtor.com"},
   ]},
   "Sean Bell McDermott":{event:"San Diego EAB",customers:[
-    {id:"kfc",         name:"Francis 'Rico' Arrastia", title:"CDTO",                            company:"KFC / Yum!"},
-    {id:"rocket",      name:"Rob Costello",         title:"VP, Analytics",                     company:"Rocket Mortgage"},
-    {id:"yum",         name:"Theodore Pizza",       title:"VP, Digital",                       company:"Yum! Brands"},
-    {id:"rbi",         name:"Amber Zhao",           title:"Product Manager II",                company:"RBI / Popeyes"},
+    {id:"kfc",         name:"Francis 'Rico' Arrastia", title:"CDTO",                                        company:"KFC / Yum!"},
+    {id:"rocket",      name:"Rob Costello",           title:"VP, Analytics",                                  company:"Rocket Mortgage"},
+    {id:"yum",         name:"Theodore Pizza",         title:"VP, Digital",                                    company:"Yum! Brands"},
+    {id:"rbi",         name:"Amber Zhao",             title:"Product Manager II, Consumer Technology Group", company:"RBI / Popeyes"},
   ]},
   "Gamon Yaklich":{event:"San Diego EAB",customers:[
-    {id:"nvidia",      name:"Ari Capogeannis",      title:"Sr. Director, Enterprise Revenue Marketing", company:"NVIDIA"},
-    {id:"cisco",       name:"Jason Cyr",            title:"VP & Head of Design, Security & AI", company:"Cisco SBG"},
-    {id:"glassdoor",   name:"Jeremy Echols",        title:"Director, Data Analytics",          company:"Glassdoor"},
+    {id:"nvidia",      name:"Ari Capogeannis",        title:"Sr. Director, Enterprise Revenue Marketing",     company:"NVIDIA"},
+    {id:"cisco",       name:"Jason Cyr",              title:"VP & Head of Design, Security & AI",             company:"Cisco SBG"},
+    {id:"glassdoor",   name:"Jeremy Echols",          title:"Director, Data Analytics",                       company:"Glassdoor"},
   ]},
   "Matt Hecht":{event:"San Diego EAB",customers:[
-    {id:"g2",          name:"Alexandra London",     title:"CMO",                               company:"G2"},
+    {id:"g2",          name:"Alexandra London",       title:"CMO",                                            company:"G2"},
+  ]},
+  "Adam Yapkowitz":{event:"San Diego EAB",customers:[
+    {id:"pgaeab",      name:"Eric Hanson",            title:"VP, Product Development",                        company:"PGA Tour"},
   ]},
   "PJ Franovic":{event:"San Diego EAB",customers:[
-    {id:"care",        name:"Amit Goyal",           title:"CTO",                               company:"Care.com"},
-    {id:"vanguard",    name:"Doug Cirillo",         title:"Head of Digital Experience & Growth", company:"Vanguard"},
+    {id:"care",        name:"Amit Goyal",             title:"CTO",                                            company:"Care.com"},
+    {id:"vanguard",    name:"Doug Cirillo",           title:"Head of Digital Experience & Growth",            company:"Vanguard"},
   ]},
   "Cameron Curran":{event:"San Diego EAB",customers:[
-    {id:"hertz",       name:"Pranav Mittal",        title:"SVP, Product Management",           company:"Hertz"},
+    {id:"hertz",       name:"Pranav Mittal",          title:"SVP, Product Management",                        company:"Hertz"},
   ]},
   "Shaine Salvador":{event:"San Diego EAB",customers:[
-    {id:"jh",          name:"Brian Sekerak",        title:"VP, Digital Experience",            company:"James Hardie"},
+    {id:"jh",          name:"Brian Sekerak",          title:"VP, Digital Experience",                         company:"James Hardie"},
   ]},
   // LONDON CAB
   "Massimo Osako":{event:"London CAB",customers:[
-    {id:"preply",      name:"Oriol Batlle Linares", title:"Director of Data & Analytics",      company:"Preply"},
+    {id:"preply",      name:"Oriol Batlle Linares",   title:"Director of Data & Analytics",                  company:"Preply"},
   ]},
   "Aitana Congost":{event:"London CAB",customers:[
-    {id:"haven",       name:"Dan Grainger",         title:"Head of Analytics",                 company:"Haven / Bourne Leisure"},
-    {id:"global",      name:"Danny Starr",          title:"CX Product Lead",                   company:"Global Radio"},
+    {id:"haven",       name:"Dan Grainger",           title:"Head of Analytics",                              company:"Haven / Bourne Leisure"},
+    {id:"global",      name:"Danny Starr",            title:"CX Product Lead",                                company:"Global Radio"},
+    {id:"bupa",        name:"Charles Butler",         title:"Director of Digital Propositions",              company:"Bupa"},
   ]},
   "Daniel Almond":{event:"London CAB",customers:[
-    {id:"reach",       name:"Shay Cooper",          title:"Director, Data & Analytics",        company:"ReachPLC"},
+    {id:"reach",       name:"Shay Cooper",            title:"Director, Data & Analytics",                    company:"ReachPLC"},
   ]},
   "Bruno Barbagli":{event:"London CAB",customers:[
-    {id:"voicemod",    name:"Tiago Pérez",           title:"Head of Data",                      company:"Voicemod"},
+    {id:"voicemod",    name:"Tiago Pérez",            title:"Head of Data",                                   company:"Voicemod"},
   ]},
   "Paul Baier":{event:"London CAB",customers:[
-    {id:"on",          name:"Michael Attenkofer",   title:"Head of Web Analytics",             company:"On"},
+    {id:"on",          name:"Michael Attenkofer",     title:"Head of Web Analytics",                         company:"On"},
   ]},
   "David Mischel":{event:"London CAB",customers:[
-    {id:"fressnap",    name:"Jose Luis Loren",      title:"Head of Data & Analytics",          company:"Fressnapf"},
+    {id:"fressnap",    name:"Jose Luis Loren",        title:"Head of Data & Analytics",                      company:"Fressnapf"},
   ]},
   "Niklas Fogander":{event:"London CAB",customers:[
-    {id:"kahoot",      name:"Alexander Remen",      title:"VP, Product",                       company:"Kahoot"},
-    {id:"spotify",     name:"Joost de Schepper",    title:"Director, User Growth Optimisation", company:"Spotify"},
+    {id:"kahoot",      name:"Alexander Remen",        title:"VP, Product",                                    company:"Kahoot"},
+    {id:"spotify",     name:"Joost de Schepper",      title:"Director, User Growth Optimisation",            company:"Spotify"},
   ]},
   "Stan Lysenko":{event:"London CAB",customers:[
-    {id:"freedom",     name:"Irina Lyan",           title:"Head of Analytics",                 company:"Freedom Bank"},
+    {id:"freedom",     name:"Irina Lyan",             title:"Head of Analytics",                              company:"Freedom Bank"},
+  ]},
+  "Sophia Fellner":{event:"London CAB",customers:[
+    {id:"tonies",      name:"Prasad Gupte",           title:"VP, Product",                                    company:"Tonies"},
+  ]},
+  "Javier Alvarado":{event:"London CAB",customers:[
+    {id:"carwow",      name:"Chris Milne",            title:"Senior Product Analyst",                        company:"CarWow"},
+  ]},
+  "Sasha Navaseletskaya":{event:"London CAB",customers:[
+    {id:"remarkable",  name:"Marti Colominas Gener",  title:"VP, Head of Data/Insight",                      company:"reMarkable"},
+  ]},
+  "Emrah Cetin":{event:"London CAB",customers:[
+    {id:"tabby",       name:"Stas Fedyakov",          title:"Head of Analytics",                              company:"Tabby"},
+  ]},
+  // LONDON EAB
+  "Myriam Oukili":{event:"London EAB",customers:[
+    {id:"backmarket",  name:"Amandine Durr",          title:"Chief Product Officer",                         company:"Back Market"},
+  ]},
+  "Jacob Clarke":{event:"London EAB",customers:[
+    {id:"dojo",        name:"Ian Saleh",              title:"VP of Data",                                     company:"Dojo"},
+  ]},
+  "Simon Khalighi":{event:"London EAB",customers:[
+    {id:"economist",   name:"Daragh Kelly",           title:"CDO",                                            company:"The Economist Group"},
+    {id:"skyshow",     name:"Josh Snow",              title:"Chief Product Officer",                         company:"SkyShowtime"},
+  ]},
+  "Niklas Fogander":{event:"London EAB",customers:[
+    {id:"volvo",       name:"James Patterson",        title:"Head of Commercial & Marketing Data",           company:"Volvo Cars"},
+    {id:"spotifyeab",  name:"Ana Sandra Ruiz",        title:"Head of Global Growth",                         company:"Spotify"},
+  ]},
+  "Samuel Norca":{event:"London EAB",customers:[
+    {id:"amo",         name:"Alexis Druon",           title:"Co-founder & CTO",                              company:"Amo.co"},
+  ]},
+  "Paul Baier":{event:"London EAB",customers:[
+    {id:"philips",     name:"Barbara Koop",           title:"Head of Usability",                             company:"Philips"},
+  ]},
+  "Przemo Misior":{event:"London EAB",customers:[
+    {id:"pipedrive1",  name:"Michael Telfer",         title:"Head of Marketing Optimization",                company:"Pipedrive"},
+    {id:"pipedrive2",  name:"Jonny Carroll",          title:"Chief Data and Analytics Officer",              company:"Pipedrive"},
+  ]},
+  "Massimo Osako":{event:"London EAB",customers:[
+    {id:"jobtalent",   name:"Rowan Jacobson",         title:"VP of Data & Analytics",                        company:"Job and Talent"},
   ]},
 };
- 
+
 // ─── SFDC CONTEXT (mock — in production: live Salesforce MCP query) ───────────
 const SFDC = {
-  abbott:{arr:"$175K",renewal:"2026-11-30",health:78,util:94,products:["Analytics","Session Replay","Experiment"],mau:null,mauTrend:null,openTickets:0,lastEBR:null,csNextSteps:"Account recently confirmed for CAB. Hima Chintalapati noted as key contact. Focus on AI data initiatives with immediate business impact.",openRisks:null,topics:[],pastEvents:[],recentActivity:[]},
-  dq:{arr:"$686K",renewal:"2028-11-30",health:72,util:34,products:["Analytics","Web Experimentation","Experiment"],mau:31,mauTrend:"+48% (3mo)",openTickets:0,lastEBR:"Jul 2025",csNextSteps:"Low utilization at 34%. MAU growing but from low base. Focus on driving broader adoption across teams.",openRisks:"Underutilization — only 34% event volume used",topics:[],pastEvents:[],recentActivity:[]},
-  fox:{arr:"$1.3M",renewal:"2028-06-30",health:88,util:107,products:["Analytics","CDP","Web Experimentation","Session Replay","PSP","Guides & Surveys"],mau:72,mauTrend:"+53% (3mo)",openTickets:2,lastEBR:"Sep 2025",csNextSteps:"Expansion discussions ongoing. Strong MAU growth. Over event volume — renewal conversation needed.",openRisks:"Over event volume at 107% — pricing conversation needed at renewal",topics:[],pastEvents:[],recentActivity:[]},
-  sxm:{arr:"$220K",renewal:"2026-11-15",health:74,util:80,products:["Analytics"],mau:null,mauTrend:null,openTickets:0,lastEBR:null,csNextSteps:"Standard renewal track. No major risks flagged.",openRisks:null,topics:[],pastEvents:[],recentActivity:[]},
-  ibm:{arr:"$1.5M",renewal:"2027-12-31",health:85,util:75,products:["Analytics","CDP","Session Replay","PSP","Experiment"],mau:1035,mauTrend:"+79% (3mo)",openTickets:4,lastEBR:"Sep 2025",csNextSteps:"EBR scheduled mid-April. PLG program in flight with NS metric focus. Session Replay live for Newton team — expanding to 4 more teams.",openRisks:null,topics:[],pastEvents:[],recentActivity:[]},
-  fanduel:{arr:"$5.4M",renewal:"2028-09-30",health:80,util:27,products:["Analytics","CDP","Web Experimentation","Session Replay","PSP","Experiment","Guides & Surveys"],mau:678,mauTrend:"+34% (3mo)",openTickets:3,lastEBR:"Mar 2025",csNextSteps:"Full platform customer. Underutilizing at 27% — focus on driving event volume usage. Last EBR was Mar 2025, overdue.",openRisks:"Underutilization at 27% event volume — expansion conversation needed",topics:[],pastEvents:[],recentActivity:[]},
-  cox:{arr:"$175K",renewal:"2026-09-15",health:70,util:80,products:["Analytics"],mau:null,mauTrend:null,openTickets:0,lastEBR:null,csNextSteps:"Upcoming renewal in Sept 2026. Single product — Analytics only.",openRisks:null,topics:[],pastEvents:[],recentActivity:[]},
-  nba:{arr:"$3.6M",renewal:"2027-09-30",health:75,util:16,products:["Analytics","CDP","Session Replay","PSP","Experiment","Warehouse Native","Guides & Surveys"],mau:155,mauTrend:"+9% (3mo)",openTickets:2,lastEBR:"Aug 2025",csNextSteps:"Finalize Amplify commitment. Co-development partnership planning for Q2/H2. CDP on track, Experiment implementation needs more data points.",openRisks:"Very low utilization at 16% despite full platform purchase",topics:[],pastEvents:[],recentActivity:[]},
-  mcclatchy:{arr:"$853K",renewal:"2027-03-31",health:77,util:100,products:["Analytics","CDP","Session Replay","Experiment","Guides & Surveys"],mau:140,mauTrend:"+17% (3mo)",openTickets:0,lastEBR:null,csNextSteps:"At full utilization. Strong adoption. Customer has raised product gaps — data tables and enterprise permissioning. Goal to resolve critical asks over next few quarters.",openRisks:null,topics:[],pastEvents:[],recentActivity:[]},
-  onlocation:{arr:"$195K",renewal:"2026-12-31",health:80,util:80,products:["Analytics"],mau:null,mauTrend:null,openTickets:0,lastEBR:null,csNextSteps:"Eric Lamy recently promoted to parent company TKO. Analytics only — expansion opportunity.",openRisks:null,topics:[],pastEvents:[],recentActivity:[]},
-  wbd:{arr:"$620K",renewal:"2026-08-31",health:74,util:85,products:["Analytics","Session Replay"],mau:null,mauTrend:null,openTickets:0,lastEBR:null,csNextSteps:"Session Replay deployment ongoing across streaming teams. Exec sponsor check-in scheduled.",openRisks:"Session Replay deployment slower than planned; stakeholder alignment needed",topics:[],pastEvents:[],recentActivity:[]},
-  whoop:{arr:"$1.4M",renewal:"2027-12-31",health:86,util:99,products:["Analytics","CDP","PSP","Guides & Surveys","AI Feedback"],mau:191,mauTrend:"+15% (3mo)",openTickets:0,lastEBR:"Dec 2025",csNextSteps:"Near full utilization at 99%. Strong MAU growth. Working with Alyssa on product ops and data governance.",openRisks:null,topics:[],pastEvents:[],recentActivity:[]},
-  bentley:{arr:"$1.0M",renewal:"2028-09-30",health:65,util:5,products:["Analytics","Session Replay","PSP","Experiment","Guides & Surveys"],mau:93,mauTrend:"+138% (3mo)",openTickets:0,lastEBR:null,csNextSteps:"Critical: utilization at only 5%. MAU growing fast from low base. Need to drive adoption to justify contract value.",openRisks:"Very low utilization — 5% event volume. Risk of downsell at renewal",topics:[],pastEvents:[],recentActivity:[]},
-  wu:{arr:"$252K",renewal:"2026-10-31",health:70,util:112,products:["Analytics"],mau:337,mauTrend:"+33% (3mo)",openTickets:1,lastEBR:"Nov 2025",csNextSteps:"Over volume at 112%. Renewal in Oct 2026. Adobe competitive risk — company split between Amplitude and Adobe. Executive relationship inconsistent.",openRisks:"Adobe competitive risk; no consistent Amplitude executive ownership",topics:[],pastEvents:[],recentActivity:[]},
-  qualtrics:{arr:"$454K",renewal:"2028-10-31",health:82,util:98,products:["Analytics","PSP","Experiment","Guides & Surveys"],mau:419,mauTrend:"+36% (3mo)",openTickets:1,lastEBR:"Apr 2024",csNextSteps:"Strong adoption, near full utilization. EBR overdue — last was April 2024. No immediate risks.",openRisks:"EBR overdue — last April 2024, over 12 months ago",topics:[],pastEvents:[],recentActivity:[]},
-  squarespace:{arr:"$544K",renewal:"2028-03-31",health:78,util:83,products:["Analytics"],mau:246,mauTrend:"+29% (3mo)",openTickets:1,lastEBR:"Feb 2026",csNextSteps:"Recent EBR Feb 2026. Analytics only — Experiment expansion opportunity. MAU growing well.",openRisks:null,topics:[],pastEvents:[],recentActivity:[]},
-  td:{arr:"$658K",renewal:"2029-02-28",health:72,util:71,products:["Analytics","Session Replay","PSP","Guides & Surveys","Activation"],mau:28,mauTrend:"+65% (3mo)",openTickets:1,lastEBR:"Nov 2025",csNextSteps:"Working to expand access beyond Rob's team. AI/ML conversation ongoing. Long renewal runway to 2029.",openRisks:"Access gated by single stakeholder — limited enterprise penetration",topics:[],pastEvents:[],recentActivity:[]},
-  heb:{arr:"$110K",renewal:"2026-11-30",health:72,util:77,products:["Analytics"],mau:null,mauTrend:null,openTickets:0,lastEBR:null,csNextSteps:"Analytics only. Renewal in Nov 2026. Matt Jenkins focus on AI tagging governance.",openRisks:null,topics:[],pastEvents:[],recentActivity:[]},
-  pga:{arr:"$145K",renewal:"2026-08-01",health:78,util:82,products:["Analytics","Session Replay"],mau:null,mauTrend:null,openTickets:0,lastEBR:null,csNextSteps:"Renewal coming up Aug 2026. Both CAB (Matt Mullen) and EAB (Eric Hanson) attendees confirmed.",openRisks:null,topics:[],pastEvents:[],recentActivity:[]},
-  procore:{arr:"$695K",renewal:"2027-02-28",health:75,util:58,products:["Analytics","Session Replay","PSP"],mau:118,mauTrend:"-13% (3mo)",openTickets:6,lastEBR:"Nov 2025",csNextSteps:"MAU declining -13%. 6 open tickets. Underutilizing at 58%. Expansion conversation stalled.",openRisks:"Declining MAU (-13% 3mo); 6 open tickets; underutilization",topics:[],pastEvents:[],recentActivity:[]},
-  udemy:{arr:"$481K",renewal:"2028-08-31",health:75,util:29,products:["Analytics","Session Replay","Guides & Surveys"],mau:92,mauTrend:"+11% (3mo)",openTickets:2,lastEBR:"Oct 2025",csNextSteps:"Low utilization at 29%. Renewal expected flat. Monthly office hours ongoing.",openRisks:"Underutilization at 29% event volume",topics:[],pastEvents:[],recentActivity:[]},
-  unum:{arr:"$441K",renewal:"2026-12-31",health:72,util:66,products:["Analytics","CDP","Session Replay","PSP"],mau:29,mauTrend:"+38% (3mo)",openTickets:0,lastEBR:null,csNextSteps:"Renewal in Dec 2026. Low MAU but growing. No recent EBR on record.",openRisks:null,topics:[],pastEvents:[],recentActivity:[]},
-  empower:{arr:"$2.1M",renewal:"2029-07-31",health:78,util:23,products:["Analytics","CDP","Web Experimentation","Session Replay","PSP","Experiment","Guides & Surveys"],mau:119,mauTrend:"+53% (3mo)",openTickets:5,lastEBR:"Jun 2025",csNextSteps:"Full platform. Very low utilization at 23% despite large contract. MAU growing fast (+53%). 5 open tickets.",openRisks:"Underutilization at 23% — largest contract risk",topics:[],pastEvents:[],recentActivity:[]},
-  hearst:{arr:"$280K",renewal:"2026-08-15",health:75,util:79,products:["Analytics"],mau:null,mauTrend:null,openTickets:0,lastEBR:null,csNextSteps:"Robert Gash attending as CPO. Analytics only — expansion opportunity.",openRisks:null,topics:[],pastEvents:[],recentActivity:[]},
-  realtor:{arr:"$1.9M",renewal:"2027-10-31",health:72,util:39,products:["Analytics","CDP","Session Replay","PSP","Experiment","Guides & Surveys"],mau:250,mauTrend:"+24% (3mo)",openTickets:10,lastEBR:"Oct 2025",csNextSteps:"10 open tickets — high support volume. Utilization low at 39% despite full platform. WAU declining -21%.",openRisks:"10 open tickets; WAU declining -21%; underutilization at 39%",topics:[],pastEvents:[],recentActivity:[]},
-  kfc:{arr:"$720K",renewal:"2027-01-31",health:82,util:82,products:["Analytics","Experiment"],mau:null,mauTrend:null,openTickets:0,lastEBR:null,csNextSteps:"Rico Arrastia attending as CDTO. Strong strategic account — KFC driving AI analytics maturity.",openRisks:null,topics:[],pastEvents:[],recentActivity:[]},
-  rocket:{arr:"$2.1M",renewal:"2027-02-28",health:76,util:67,products:["Analytics","Session Replay","PSP","Experiment","Guides & Surveys"],mau:450,mauTrend:"+34% (3mo)",openTickets:2,lastEBR:"Jul 2025",csNextSteps:"Strong MAU growth. WAU declining -15%. Renewal in Feb 2027. Rob Costello attending as VP Analytics.",openRisks:"WAU declining -15% despite MAU growth",topics:[],pastEvents:[],recentActivity:[]},
-  yum:{arr:"$580K",renewal:"2026-12-31",health:80,util:80,products:["Analytics","Experiment"],mau:null,mauTrend:null,openTickets:0,lastEBR:null,csNextSteps:"Theodore Pizza attending. Parent company of KFC/Popeyes brands.",openRisks:null,topics:[],pastEvents:[],recentActivity:[]},
-  rbi:{arr:"$240K",renewal:"2026-09-01",health:73,util:78,products:["Analytics"],mau:null,mauTrend:null,openTickets:0,lastEBR:null,csNextSteps:"Amber Zhao attending. Visa situation being monitored for travel.",openRisks:null,topics:[],pastEvents:[],recentActivity:[]},
-  nvidia:{arr:"$115K",renewal:"2027-08-31",health:72,util:22,products:["Analytics","PSP"],mau:55,mauTrend:"+189% (3mo)",openTickets:0,lastEBR:null,csNextSteps:"Massive MAU growth (+189%) but low utilization at 22%. Small ARR relative to company size — significant expansion opportunity.",openRisks:"Underutilization at 22%; significant expansion potential untapped",topics:[],pastEvents:[],recentActivity:[]},
-  cisco:{arr:"$702K",renewal:"2026-06-30",health:65,util:24,products:["Analytics","PSP"],mau:118,mauTrend:"+100% (3mo)",openTickets:0,lastEBR:"Sep 2025",csNextSteps:"Renewal in June 2026 — very near term. Low utilization at 24%. NGFW instrumentation underway. Executive alignment with SBG leadership needed.",openRisks:"Renewal in 76 days; low utilization at 24%; poor PM adoption",topics:[],pastEvents:[],recentActivity:[]},
-  glassdoor:{arr:"$759K",renewal:"2027-03-31",health:76,util:76,products:["Analytics","Session Replay","PSP","Experiment"],mau:132,mauTrend:"+1% (3mo)",openTickets:0,lastEBR:"Dec 2024",csNextSteps:"Implementation complete. WAU declining -13%. EBR was Dec 2024 — may be due for refresh.",openRisks:"WAU declining -13%",topics:[],pastEvents:[],recentActivity:[]},
-  g2:{arr:"$190K",renewal:"2027-02-28",health:82,util:82,products:["Analytics","Session Replay"],mau:null,mauTrend:null,openTickets:0,lastEBR:null,csNextSteps:"Alexandra London now CMO at G2 (formerly at Zoom). Strong EAB candidate.",openRisks:null,topics:[],pastEvents:[],recentActivity:[]},
-  care:{arr:"$290K",renewal:"2026-08-31",health:78,util:83,products:["Analytics","Experiment"],mau:null,mauTrend:null,openTickets:0,lastEBR:null,csNextSteps:"Amit Goyal attending as CTO. Renewal in Aug 2026.",openRisks:null,topics:[],pastEvents:[],recentActivity:[]},
-  vanguard:{arr:"$760K",renewal:"2027-01-15",health:80,util:80,products:["Analytics","Experiment","Session Replay"],mau:null,mauTrend:null,openTickets:0,lastEBR:null,csNextSteps:"Doug Cirillo attending as Head of Digital Experience. Large strategic account.",openRisks:null,topics:[],pastEvents:[],recentActivity:[]},
-  hertz:{arr:"$378K",renewal:"2028-03-31",health:80,util:144,products:["Analytics","Web Experimentation","Session Replay","PSP","Experiment"],mau:83,mauTrend:"+89% (3mo)",openTickets:1,lastEBR:"Oct 2025",csNextSteps:"Over volume at 144%. MAU growing fast +89%. Expansion conversation needed on volume overage.",openRisks:"Over event volume at 144% — billing conversation needed",topics:[],pastEvents:[],recentActivity:[]},
-  jh:{arr:"$145K",renewal:"2026-10-01",health:70,util:70,products:["Analytics"],mau:null,mauTrend:null,openTickets:0,lastEBR:null,csNextSteps:"Brian Sekerak attending as VP Digital Experience. Analytics only.",openRisks:null,topics:[],pastEvents:[],recentActivity:[]},
-  preply:{arr:"$220K",renewal:"2027-09-30",health:80,util:94,products:["Analytics"],mau:146,mauTrend:"+17% (3mo)",openTickets:0,lastEBR:"Feb 2025",csNextSteps:"Strong adoption. Analytics only — expansion opportunity. Oriol Batlle Linares attending.",openRisks:null,topics:[],pastEvents:[],recentActivity:[]},
-  haven:{arr:"$120K",renewal:"2026-11-15",health:75,util:80,products:["Analytics"],mau:null,mauTrend:null,openTickets:0,lastEBR:null,csNextSteps:"Dan Grainger attending as Head of Analytics.",openRisks:null,topics:[],pastEvents:[],recentActivity:[]},
-  global:{arr:"$239K",renewal:"2028-07-31",health:78,util:99,products:["Analytics","Session Replay","Experiment","Guides & Surveys"],mau:48,mauTrend:"+2% (3mo)",openTickets:0,lastEBR:"Mar 2026",csNextSteps:"Near full utilization. Recent EBR March 2026. Global player 2.0 launching — focused on experimentation culture.",openRisks:null,topics:[],pastEvents:[],recentActivity:[]},
-  reach:{arr:"$205K",renewal:"2026-10-31",health:78,util:78,products:["Analytics","Session Replay"],mau:null,mauTrend:null,openTickets:0,lastEBR:null,csNextSteps:"Shay Cooper attending as Director Data & Analytics.",openRisks:null,topics:[],pastEvents:[],recentActivity:[]},
-  voicemod:{arr:"$390K",renewal:"2028-12-31",health:78,util:93,products:["Analytics","CDP"],mau:47,mauTrend:"+9% (3mo)",openTickets:0,lastEBR:"Mar 2025",csNextSteps:"Near full utilization. CDP recently added. Tiago Pérez attending.",openRisks:null,topics:[],pastEvents:[],recentActivity:[]},
-  on:{arr:"$200K",renewal:"2026-07-31",health:72,util:95,products:["Analytics","Experiment"],mau:104,mauTrend:"+100% (3mo)",openTickets:0,lastEBR:null,csNextSteps:"Renewal in July 2026 — near term. Near full utilization. Massive MAU growth +100%.",openRisks:"Renewal in 107 days — prioritize renewal conversation",topics:[],pastEvents:[],recentActivity:[]},
-  fressnap:{arr:"$110K",renewal:"2026-08-15",health:68,util:68,products:["Analytics"],mau:null,mauTrend:null,openTickets:0,lastEBR:null,csNextSteps:"Jose Luis Loren attending. Adobe replacement opportunity — customer is part of Adobe advisory committee.",openRisks:null,topics:[],pastEvents:[],recentActivity:[]},
-  kahoot:{arr:"$431K",renewal:"2027-11-30",health:76,util:65,products:["Analytics","Session Replay"],mau:148,mauTrend:"+16% (3mo)",openTickets:5,lastEBR:"Aug 2025",csNextSteps:"5 open tickets. Experiment evaluation underway. Data task force launched internally.",openRisks:"5 open tickets; Experiment evaluation in progress",topics:[],pastEvents:[],recentActivity:[]},
-  spotify:{arr:"$475K",renewal:"2027-12-31",health:62,util:6,products:["Analytics","Session Replay","PSP"],mau:1,mauTrend:"0% (3mo)",openTickets:0,lastEBR:null,csNextSteps:"Critical: only 1 MAU and 6% utilization despite $475K contract. Significant adoption risk.",openRisks:"Critical — 1 MAU, 6% utilization. Adoption/churn risk",topics:[],pastEvents:[],recentActivity:[]},
-  freedom:{arr:"$80K",renewal:"2026-09-30",health:65,util:65,products:["Analytics"],mau:null,mauTrend:null,openTickets:0,lastEBR:null,csNextSteps:"Irina Lyan attending. Smaller account. Customer eager to attend but needed time to arrange travel.",openRisks:null,topics:[],pastEvents:[],recentActivity:[]},
+  abbott:{arr:"$175K",renewal:"Nov 2026",health:78,util:94,products:["Analytics","Session Replay","Experiment"],mau:null,mauTrend:null,openTickets:0,csNextSteps:"Confirmed for SD CAB. Focus on AI data initiatives.",openRisks:null,topics:[],pastEvents:[],recentActivity:[]},
+  dq:{arr:"$686K",renewal:"Nov 2028",health:72,util:34,products:["Analytics","Web Experimentation","Experiment"],mau:30,mauTrend:"+36% (3mo)",openTickets:0,csNextSteps:"Low utilization at 34%. MAU growing +36%. Drive broader adoption.",openRisks:"Underutilization — 34% event volume used",topics:[],pastEvents:[],recentActivity:[]},
+  fox:{arr:"$1.3M",renewal:"Jun 2028",health:88,util:107,products:["Analytics","CDP","Web Experimentation","Session Replay","PSP","Guides & Surveys"],mau:76,mauTrend:"+62% (3mo)",openTickets:2,csNextSteps:"Over event volume at 107%. Strong MAU growth +62%. Renewal conversation needed.",openRisks:"Over event volume at 107%",topics:[],pastEvents:[],recentActivity:[]},
+  sxm:{arr:"$220K",renewal:"Nov 2026",health:74,util:80,products:["Analytics"],mau:null,mauTrend:null,openTickets:0,csNextSteps:"Standard renewal track. No major risks.",openRisks:null,topics:[],pastEvents:[],recentActivity:[]},
+  ibm:{arr:"$1.5M",renewal:"Dec 2027",health:85,util:73,products:["Analytics","CDP","Session Replay","PSP","Experiment"],mau:1069,mauTrend:"+69% (3mo)",openTickets:3,csNextSteps:"EBR scheduled mid-April. PLG program in flight. Session Replay expanding across IBM teams.",openRisks:null,topics:[],pastEvents:[],recentActivity:[]},
+  fanduel:{arr:"$5.4M",renewal:"Sep 2028",health:80,util:27,products:["Analytics","CDP","Web Experimentation","Session Replay","PSP","Experiment","Guides & Surveys"],mau:674,mauTrend:"+34% (3mo)",openTickets:3,csNextSteps:"Full platform at 27% utilization. EBR overdue — last Mar 2025.",openRisks:"27% utilization on $5.4M contract",topics:[],pastEvents:[],recentActivity:[]},
+  cox:{arr:"$175K",renewal:"Sep 2026",health:70,util:80,products:["Analytics"],mau:null,mauTrend:null,openTickets:0,csNextSteps:"Renewal in Sep 2026. Analytics only.",openRisks:null,topics:[],pastEvents:[],recentActivity:[]},
+  nba:{arr:"$3.6M",renewal:"Sep 2027",health:75,util:16,products:["Analytics","CDP","Session Replay","PSP","Experiment","Warehouse Native","Guides & Surveys"],mau:154,mauTrend:"+8% (3mo)",openTickets:2,csNextSteps:"Finalize Amplify commitment. CDP on track. Co-development partnership planning.",openRisks:"16% utilization on $3.6M full-platform contract",topics:[],pastEvents:[],recentActivity:[]},
+  mcclatchy:{arr:"$853K",renewal:"Mar 2027",health:77,util:100,products:["Analytics","CDP","Session Replay","Experiment","Guides & Surveys"],mau:142,mauTrend:"+26% (3mo)",openTickets:0,csNextSteps:"At full utilization. Strong MAU growth. Product gap conversations ongoing.",openRisks:null,topics:[],pastEvents:[],recentActivity:[]},
+  onlocation:{arr:"$195K",renewal:"Dec 2026",health:80,util:80,products:["Analytics"],mau:null,mauTrend:null,openTickets:0,csNextSteps:"Eric Lamy recently promoted to parent company TKO. Expansion opportunity.",openRisks:null,topics:[],pastEvents:[],recentActivity:[]},
+  wbd:{arr:"$620K",renewal:"Aug 2026",health:74,util:85,products:["Analytics","Session Replay"],mau:null,mauTrend:null,openTickets:0,csNextSteps:"Session Replay deployment ongoing. Exec sponsor check-in scheduled.",openRisks:"Session Replay rollout slower than planned",topics:[],pastEvents:[],recentActivity:[]},
+  whoop:{arr:"$1.4M",renewal:"Dec 2027",health:86,util:99,products:["Analytics","CDP","PSP","Guides & Surveys","AI Feedback"],mau:189,mauTrend:"+15% (3mo)",openTickets:0,csNextSteps:"Near full utilization. Strong MAU growth. Data governance work ongoing.",openRisks:null,topics:[],pastEvents:[],recentActivity:[]},
+  bentley:{arr:"$1.0M",renewal:"Sep 2028",health:65,util:5,products:["Analytics","Session Replay","PSP","Experiment","Guides & Surveys"],mau:93,mauTrend:"+133% (3mo)",openTickets:0,csNextSteps:"Critical: 5% event volume. MAU growing from low base. Drive adoption urgently.",openRisks:"5% event volume utilization on $1M contract",topics:[],pastEvents:[],recentActivity:[]},
+  wu:{arr:"$252K",renewal:"Oct 2026",health:70,util:112,products:["Analytics"],mau:339,mauTrend:"+31% (3mo)",openTickets:1,csNextSteps:"Over volume at 112%. Renewal Oct 2026. Adobe competitive risk at exec level.",openRisks:"Adobe competitive risk; renewal Oct 2026",topics:[],pastEvents:[],recentActivity:[]},
+  qualtrics:{arr:"$454K",renewal:"Oct 2028",health:82,util:94,products:["Analytics","PSP","Experiment","Guides & Surveys"],mau:444,mauTrend:"+31% (3mo)",openTickets:1,csNextSteps:"Strong adoption near full util. EBR overdue — last Apr 2024.",openRisks:null,topics:[],pastEvents:[],recentActivity:[]},
+  squarespace:{arr:"$544K",renewal:"Mar 2028",health:78,util:83,products:["Analytics"],mau:249,mauTrend:"+28% (3mo)",openTickets:1,csNextSteps:"Recent EBR Feb 2026. Analytics only — Experiment expansion opportunity.",openRisks:null,topics:[],pastEvents:[],recentActivity:[]},
+  td:{arr:"$658K",renewal:"Feb 2029",health:72,util:71,products:["Analytics","Session Replay","PSP","Guides & Surveys","Activation"],mau:26,mauTrend:"+44% (3mo)",openTickets:0,csNextSteps:"Working to expand access beyond Rob's team. AI/ML POC in progress.",openRisks:"Access gated by single stakeholder",topics:[],pastEvents:[],recentActivity:[]},
+  heb:{arr:"$110K",renewal:"Nov 2026",health:72,util:77,products:["Analytics"],mau:null,mauTrend:null,openTickets:0,csNextSteps:"Analytics only. Matt Jenkins focus on AI tagging governance.",openRisks:null,topics:[],pastEvents:[],recentActivity:[]},
+  pga:{arr:"$145K",renewal:"Aug 2026",health:78,util:82,products:["Analytics","Session Replay"],mau:null,mauTrend:null,openTickets:0,csNextSteps:"Both Matt Mullen (CAB) and Eric Hanson (EAB) confirmed. Renewal Aug 2026.",openRisks:null,topics:[],pastEvents:[],recentActivity:[]},
+  procore:{arr:"$695K",renewal:"Feb 2027",health:75,util:58,products:["Analytics","Session Replay","PSP"],mau:116,mauTrend:"-14% (3mo)",openTickets:7,csNextSteps:"MAU declining -14%. 7 open tickets. Underutilizing at 58%. Expansion stalled.",openRisks:"Declining MAU (-14%); 7 open tickets",topics:[],pastEvents:[],recentActivity:[]},
+  udemy:{arr:"$481K",renewal:"Aug 2028",health:75,util:29,products:["Analytics","Session Replay","Guides & Surveys"],mau:96,mauTrend:"+22% (3mo)",openTickets:2,csNextSteps:"Low utilization at 29%. Renewal flat. Monthly office hours ongoing.",openRisks:"29% event volume utilization",topics:[],pastEvents:[],recentActivity:[]},
+  unum:{arr:"$441K",renewal:"Dec 2026",health:72,util:66,products:["Analytics","CDP","Session Replay","PSP"],mau:31,mauTrend:"+41% (3mo)",openTickets:0,csNextSteps:"Renewal Dec 2026. MAU growing. No recent EBR on record.",openRisks:null,topics:[],pastEvents:[],recentActivity:[]},
+  empower:{arr:"$2.1M",renewal:"Jul 2029",health:78,util:23,products:["Analytics","CDP","Web Experimentation","Session Replay","PSP","Experiment","Guides & Surveys"],mau:119,mauTrend:"+53% (3mo)",openTickets:5,csNextSteps:"Full platform at 23% utilization. MAU growing fast. 5 open tickets.",openRisks:"23% utilization on $2.1M contract",topics:[],pastEvents:[],recentActivity:[]},
+  hearst:{arr:"$280K",renewal:"Aug 2026",health:75,util:79,products:["Analytics"],mau:null,mauTrend:null,openTickets:0,csNextSteps:"Robert Gash attending as CPO. Analytics only — expansion opportunity.",openRisks:null,topics:[],pastEvents:[],recentActivity:[]},
+  realtor:{arr:"$1.9M",renewal:"Oct 2027",health:72,util:39,products:["Analytics","CDP","Session Replay","PSP","Experiment","Guides & Surveys"],mau:250,mauTrend:"+24% (3mo)",openTickets:10,csNextSteps:"10 open tickets — high support volume. 39% utilization. WAU declining.",openRisks:"10 open tickets; WAU declining -21%; 39% utilization",topics:[],pastEvents:[],recentActivity:[]},
+  kfc:{arr:"$720K",renewal:"Jan 2027",health:82,util:82,products:["Analytics","Experiment"],mau:null,mauTrend:null,openTickets:0,csNextSteps:"Rico Arrastia attending as CDTO. Strong strategic account.",openRisks:null,topics:[],pastEvents:[],recentActivity:[]},
+  rocket:{arr:"$2.1M",renewal:"Feb 2027",health:76,util:67,products:["Analytics","Session Replay","PSP","Experiment","Guides & Surveys"],mau:450,mauTrend:"+34% (3mo)",openTickets:2,csNextSteps:"Strong MAU growth. WAU declining -15%. Renewal Feb 2027.",openRisks:"WAU declining -15%",topics:[],pastEvents:[],recentActivity:[]},
+  yum:{arr:"$580K",renewal:"Dec 2026",health:80,util:80,products:["Analytics","Experiment"],mau:null,mauTrend:null,openTickets:0,csNextSteps:"Theodore Pizza attending. Yum Brands parent of KFC/Popeyes.",openRisks:null,topics:[],pastEvents:[],recentActivity:[]},
+  rbi:{arr:"$240K",renewal:"Sep 2026",health:73,util:78,products:["Analytics"],mau:null,mauTrend:null,openTickets:0,csNextSteps:"Amber Zhao confirmed. Visa situation resolved.",openRisks:null,topics:[],pastEvents:[],recentActivity:[]},
+  nvidia:{arr:"$115K",renewal:"Aug 2027",health:72,util:22,products:["Analytics","PSP"],mau:55,mauTrend:"+189% (3mo)",openTickets:0,csNextSteps:"Massive MAU growth but 22% utilization. Significant expansion opportunity.",openRisks:"22% utilization — large expansion opportunity untapped",topics:[],pastEvents:[],recentActivity:[]},
+  cisco:{arr:"$702K",renewal:"Jun 2026",health:65,util:24,products:["Analytics","PSP"],mau:119,mauTrend:"+89% (3mo)",openTickets:0,csNextSteps:"Renewal in 75 days. Low utilization 24%. NGFW instrumentation underway. Exec alignment needed.",openRisks:"Renewal in 75 days; 24% utilization",topics:[],pastEvents:[],recentActivity:[]},
+  glassdoor:{arr:"$759K",renewal:"Mar 2027",health:76,util:76,products:["Analytics","Session Replay","PSP","Experiment"],mau:132,mauTrend:"+1% (3mo)",openTickets:0,csNextSteps:"Implementation complete. EBR Dec 2024 — may be due.",openRisks:null,topics:[],pastEvents:[],recentActivity:[]},
+  g2:{arr:"$190K",renewal:"Feb 2027",health:82,util:82,products:["Analytics","Session Replay"],mau:null,mauTrend:null,openTickets:0,csNextSteps:"Alexandra London now CMO. Strong EAB candidate.",openRisks:null,topics:[],pastEvents:[],recentActivity:[]},
+  pgaeab:{arr:"$145K",renewal:"Aug 2026",health:78,util:82,products:["Analytics","Session Replay"],mau:null,mauTrend:null,openTickets:0,csNextSteps:"Eric Hanson attending as VP Product Development. Renewal Aug 2026.",openRisks:null,topics:[],pastEvents:[],recentActivity:[]},
+  care:{arr:"$290K",renewal:"Aug 2026",health:78,util:83,products:["Analytics","Experiment"],mau:null,mauTrend:null,openTickets:0,csNextSteps:"Amit Goyal attending as CTO. Renewal Aug 2026.",openRisks:null,topics:[],pastEvents:[],recentActivity:[]},
+  vanguard:{arr:"$760K",renewal:"Jan 2027",health:80,util:80,products:["Analytics","Experiment","Session Replay"],mau:null,mauTrend:null,openTickets:0,csNextSteps:"Doug Cirillo attending. Large strategic account.",openRisks:null,topics:[],pastEvents:[],recentActivity:[]},
+  hertz:{arr:"$378K",renewal:"Mar 2028",health:80,util:144,products:["Analytics","Web Experimentation","Session Replay","PSP","Experiment"],mau:83,mauTrend:"+89% (3mo)",openTickets:1,csNextSteps:"Over volume at 144%. MAU growing fast. Billing conversation needed.",openRisks:"Over event volume at 144%",topics:[],pastEvents:[],recentActivity:[]},
+  jh:{arr:"$145K",renewal:"Oct 2026",health:70,util:70,products:["Analytics"],mau:null,mauTrend:null,openTickets:0,csNextSteps:"Brian Sekerak attending. Analytics only.",openRisks:null,topics:[],pastEvents:[],recentActivity:[]},
+  preply:{arr:"$220K",renewal:"Sep 2027",health:80,util:94,products:["Analytics"],mau:150,mauTrend:"+17% (3mo)",openTickets:0,csNextSteps:"Strong adoption. Analytics only — expansion opportunity.",openRisks:null,topics:[],pastEvents:[],recentActivity:[]},
+  haven:{arr:"$120K",renewal:"Nov 2026",health:75,util:80,products:["Analytics"],mau:null,mauTrend:null,openTickets:0,csNextSteps:"Dan Grainger attending as Head of Analytics.",openRisks:null,topics:[],pastEvents:[],recentActivity:[]},
+  global:{arr:"$239K",renewal:"Jul 2028",health:75,util:99,products:["Analytics","Session Replay","Experiment","Guides & Surveys"],mau:45,mauTrend:"-6% (3mo)",openTickets:1,csNextSteps:"Near full utilization. Recent EBR Mar 2026. Global player 2.0 launching.",openRisks:"MAU declining -6%",topics:[],pastEvents:[],recentActivity:[]},
+  bupa:{arr:"$242K",renewal:"Oct 2026",health:78,util:100,products:["Analytics","Session Replay","PSP","Experiment","Guides & Surveys"],mau:127,mauTrend:"+79% (3mo)",openTickets:3,csNextSteps:"Near full utilization. MAU +79%. 3 open tickets. Recent EBR Mar 2026.",openRisks:null,topics:[],pastEvents:[],recentActivity:[]},
+  reach:{arr:"$205K",renewal:"Oct 2026",health:78,util:78,products:["Analytics","Session Replay"],mau:null,mauTrend:null,openTickets:0,csNextSteps:"Shay Cooper attending. Renewal Oct 2026.",openRisks:null,topics:[],pastEvents:[],recentActivity:[]},
+  voicemod:{arr:"$390K",renewal:"Dec 2028",health:78,util:93,products:["Analytics","CDP"],mau:46,mauTrend:"+7% (3mo)",openTickets:0,csNextSteps:"Near full utilization. CDP recently added.",openRisks:null,topics:[],pastEvents:[],recentActivity:[]},
+  on:{arr:"$200K",renewal:"Jul 2026",health:72,util:95,products:["Analytics","Experiment"],mau:104,mauTrend:"+89% (3mo)",openTickets:0,csNextSteps:"Renewal in 106 days. Near full utilization. MAU growing fast.",openRisks:"Renewal in 106 days — prioritize",topics:[],pastEvents:[],recentActivity:[]},
+  fressnap:{arr:"$110K",renewal:"Aug 2026",health:68,util:68,products:["Analytics"],mau:null,mauTrend:null,openTickets:0,csNextSteps:"Adobe replacement opportunity. Fressnapf is largest petfood retailer in EMEA.",openRisks:null,topics:[],pastEvents:[],recentActivity:[]},
+  kahoot:{arr:"$431K",renewal:"Nov 2027",health:76,util:65,products:["Analytics","Session Replay"],mau:145,mauTrend:"+14% (3mo)",openTickets:5,csNextSteps:"5 open tickets. Experiment evaluation underway.",openRisks:"5 open tickets",topics:[],pastEvents:[],recentActivity:[]},
+  spotify:{arr:"$475K",renewal:"Dec 2027",health:62,util:6,products:["Analytics","Session Replay","PSP"],mau:1,mauTrend:"0% (3mo)",openTickets:0,csNextSteps:"Critical: 1 MAU, 6% utilization on $475K contract.",openRisks:"Critical — 1 MAU, 6% utilization on $475K",topics:[],pastEvents:[],recentActivity:[]},
+  freedom:{arr:"$144K",renewal:"Nov 2026",health:65,util:71,products:["Analytics"],mau:44,mauTrend:"-15% (3mo)",openTickets:1,csNextSteps:"MAU declining -15%. Irina Lyan attending. Renewal Nov 2026.",openRisks:"MAU declining -15%",topics:[],pastEvents:[],recentActivity:[]},
+  tonies:{arr:"$125K",renewal:"Feb 2028",health:72,util:152,products:["Analytics","Experiment"],mau:48,mauTrend:"0% (3mo)",openTickets:0,csNextSteps:"Over event volume at 152%. Prasad Gupte attending as VP Product.",openRisks:"Over event volume at 152%",topics:[],pastEvents:[],recentActivity:[]},
+  carwow:{arr:"$224K",renewal:"Dec 2027",health:80,util:121,products:["Analytics","CDP","Web Experimentation","Session Replay","PSP","Experiment","Guides & Surveys","AI Feedback"],mau:88,mauTrend:"+11% (3mo)",openTickets:1,csNextSteps:"Full platform. Over volume at 121%. Healthy MAU growth.",openRisks:"Over event volume at 121%",topics:[],pastEvents:[],recentActivity:[]},
+  remarkable:{arr:"$107K",renewal:"Dec 2027",health:78,util:149,products:["Analytics","Session Replay","Guides & Surveys"],mau:74,mauTrend:"+32% (3mo)",openTickets:0,csNextSteps:"Over volume at 149%. MAU growing +32%.",openRisks:"Over event volume at 149%",topics:[],pastEvents:[],recentActivity:[]},
+  tabby:{arr:"$332K",renewal:"Oct 2026",health:78,util:119,products:["Analytics"],mau:97,mauTrend:"+59% (3mo)",openTickets:0,csNextSteps:"Over volume at 119%. MAU growing fast +59%. Renewal Oct 2026.",openRisks:"Over event volume at 119%; renewal Oct 2026",topics:[],pastEvents:[],recentActivity:[]},
+  backmarket:{arr:"$210K",renewal:"Jun 2026",health:72,util:128,products:["Analytics"],mau:112,mauTrend:"+24% (3mo)",openTickets:0,csNextSteps:"Over volume at 128%. Renewal in 75 days. Marketing Analytics use case expanding.",openRisks:"Renewal in 75 days; over event volume 128%",topics:[],pastEvents:[],recentActivity:[]},
+  dojo:{arr:"$274K",renewal:"Feb 2027",health:78,util:72,products:["Analytics","CDP","Guides & Surveys"],mau:50,mauTrend:"+47% (3mo)",openTickets:1,csNextSteps:"MAU growing +47%. Ian Saleh attending as VP Data.",openRisks:null,topics:[],pastEvents:[],recentActivity:[]},
+  economist:{arr:"$483K",renewal:"Mar 2028",health:82,util:317,products:["Analytics","Web Experimentation","Session Replay","PSP","Experiment","Guides & Surveys"],mau:206,mauTrend:"+73% (3mo)",openTickets:5,csNextSteps:"Massively over volume at 317%. 5 open tickets. MAU growing fast +73%.",openRisks:"Over event volume 317%; 5 open tickets — billing conversation urgent",topics:[],pastEvents:[],recentActivity:[]},
+  volvo:{arr:"$268K",renewal:"Jul 2027",health:78,util:81,products:["Analytics","Session Replay"],mau:147,mauTrend:"+52% (3mo)",openTickets:4,csNextSteps:"MAU growing +52%. 4 open tickets. James Patterson attending.",openRisks:"4 open tickets",topics:[],pastEvents:[],recentActivity:[]},
+  amo:{arr:"$300K",renewal:"May 2028",health:80,util:118,products:["Analytics","Session Replay"],mau:49,mauTrend:"+23% (3mo)",openTickets:0,csNextSteps:"Over volume at 118%. Healthy MAU growth. Recent EBR Oct 2025.",openRisks:"Over event volume at 118%",topics:[],pastEvents:[],recentActivity:[]},
+  skyshow:{arr:"$218K",renewal:"Dec 2027",health:74,util:72,products:["Analytics","PSP"],mau:17,mauTrend:"+21% (3mo)",openTickets:0,csNextSteps:"WAU declining -43%. MAU growing from low base. Josh Snow attending as CPO.",openRisks:"WAU declining -43%",topics:[],pastEvents:[],recentActivity:[]},
+  philips:{arr:"$271K",renewal:"Mar 2028",health:68,util:0,products:["Analytics","PSP"],mau:5,mauTrend:"0% (3mo)",openTickets:0,csNextSteps:"Critical: essentially 0% utilization and 5 MAU. Barbara Koop attending.",openRisks:"Near-zero utilization and MAU — adoption critical",topics:[],pastEvents:[],recentActivity:[]},
+  spotifyeab:{arr:"$475K",renewal:"Dec 2027",health:62,util:6,products:["Analytics","Session Replay","PSP"],mau:1,mauTrend:"0% (3mo)",openTickets:0,csNextSteps:"Same Spotify account. Ana Sandra Ruiz attending as Head of Global Growth.",openRisks:"Critical — 1 MAU, 6% utilization on $475K",topics:[],pastEvents:[],recentActivity:[]},
+  pipedrive1:{arr:"$468K",renewal:"Jun 2026",health:78,util:107,products:["Analytics","Web Experimentation","Experiment"],mau:167,mauTrend:"+37% (3mo)",openTickets:2,csNextSteps:"Over volume at 107%. Renewal in 75 days. MAU growing +37%.",openRisks:"Renewal in 75 days; over event volume 107%",topics:[],pastEvents:[],recentActivity:[]},
+  pipedrive2:{arr:"$468K",renewal:"Jun 2026",health:78,util:107,products:["Analytics","Web Experimentation","Experiment"],mau:167,mauTrend:"+37% (3mo)",openTickets:2,csNextSteps:"Same Pipedrive account. Jonny Carroll attending as Chief Data & Analytics Officer.",openRisks:"Renewal in 75 days; over event volume 107%",topics:[],pastEvents:[],recentActivity:[]},
+  jobtalent:{arr:"$109K",renewal:"Dec 2026",health:72,util:49,products:["Analytics"],mau:31,mauTrend:"+55% (3mo)",openTickets:0,csNextSteps:"MAU growing +55% but utilization low at 49%. Rowan Jacobson attending.",openRisks:null,topics:[],pastEvents:[],recentActivity:[]},
 };
- 
+
 const EVENT_META={
   "San Diego CAB":{color:"#0052F2",bg:"#EEF3FF",icon:"🌊"},
   "San Diego EAB":{color:"#001A4F",bg:"#E8EDF8",icon:"🌴"},
   "London CAB":{color:"#374151",bg:"#F3F4F6",icon:"🇬🇧"},
+  "London EAB":{color:"#4B5563",bg:"#F9FAFB",icon:"🇬🇧"},
 };
- 
-const STEPS=["Select AE","Verify & review","Add your intel","Matchmaking","Review & submit"];
- 
+
+const STEPS=["Select AE","Verify & review","Add key requests","Matchmaking","Review & submit"];
+
 // ─── SUPABASE ─────────────────────────────────────────────────────────────────
 const SHEETS_URL="https://script.google.com/a/macros/amplitude.com/s/AKfycbwAK-_cklDe-09YFZJ5P5Fz3ma7Cup4YSLT7431TnaGflLzD8WQRDL3mC4qDuB8H_TL/exec";
- 
+
 function hc(s){return s>=75?B.green:s>=55?B.amber:B.red;}
 function hl(s){return s>=75?"Healthy":s>=55?"At Risk":"Critical";}
- 
+
 function Chip({label,color=B.blue,bg,small}){
   return <span style={{display:"inline-flex",alignItems:"center",padding:small?"1px 6px":"2px 9px",borderRadius:99,fontSize:small?9:11,fontWeight:700,color,background:bg||color+"14",fontFamily:B.font,whiteSpace:"nowrap",letterSpacing:"0.01em"}}>{label}</span>;
 }
- 
+
 function Ring({score}){
   const c=hc(score),r=18,circ=2*Math.PI*r;
   return(
@@ -280,7 +344,7 @@ function Ring({score}){
     </div>
   );
 }
- 
+
 // ─── MANDATORY FIELD with "nothing to add" escape hatch ──────────────────────
 function MandatoryField({label,hint,placeholder,value,onChange,skipped,onSkip,isLoading,onGenerate}){
   const filled=value.trim().length>4;
@@ -315,7 +379,7 @@ function MandatoryField({label,hint,placeholder,value,onChange,skipped,onSkip,is
     </div>
   );
 }
- 
+
 function ContextPanel({customer,sfdc}){
   const rf=sfdc.renewal&&sfdc.renewal!=="—"?new Date(sfdc.renewal).toLocaleDateString("en-US",{month:"short",year:"numeric"}):sfdc.renewal||"—";
   return(
@@ -382,7 +446,7 @@ function ContextPanel({customer,sfdc}){
     </div>
   );
 }
- 
+
 function StepBar({current}){
   return(
     <div style={{display:"flex",alignItems:"center",marginBottom:24}}>
@@ -401,7 +465,7 @@ function StepBar({current}){
     </div>
   );
 }
- 
+
 function App(){
   const [ae,setAe]=useState("");
   const [customer,setCustomer]=useState(null);
@@ -424,13 +488,13 @@ function App(){
     execMatches:[],
     importantConvos:"",
   });
- 
+
   const aeData=ae?AE_ROSTER[ae]:null;
   const customers=aeData?.customers||[];
   const sfdc=customer?(SFDC[customer.id]||null):null;
   const em=aeData?EVENT_META[aeData.event]:null;
   const execs=aeData?AMPLITUDE_EXECS[aeData.event]||[]:[];
- 
+
   // ── SAME-EVENT PEER FILTERING ──────────────────────────────────────────────
   // Only show other attendees from the same event as the current customer
   const sameEventPeers = aeData
@@ -440,20 +504,20 @@ function App(){
         .filter(c=>c.id!==customer?.id)
         .sort((a,b)=>a.company.localeCompare(b.company))
     : [];
- 
+
   function setField(k,v){setForm(p=>({...p,[k]:v}));}
- 
+
   const intelComplete=["anecdote","outcome","avoid","wins"].every(k=>
     form[k].trim().length>4||form[k+"Skip"]
   );
- 
+
   function pickAE(name){setAe(name);setCustomer(null);setSfReady(false);setVerified(false);setCorrections("");setStep(1);}
   function pickCustomer(c){
     setCustomer(c);setSfLoading(true);setSfReady(false);setVerified(false);setCorrections("");
     setForm({anecdote:"",anecdoteSkip:false,outcome:"",outcomeSkip:false,avoid:"",avoidSkip:false,wins:"",winsSkip:false,risks:"",risksSkip:false,peerMatches:[{customerId:"",reason:""},{customerId:"",reason:""}],execMatches:[],importantConvos:""});
     setTimeout(()=>{setSfLoading(false);setSfReady(true);},1400);
   }
- 
+
   async function genAI(field){
     if(!customer)return;
     setAiLoading(p=>({...p,[field]:true}));
@@ -466,26 +530,18 @@ function App(){
       avoid:`Based on: ${ctx} — list 2-3 specific topics to tactfully avoid. Be direct. Max 60 words.`,
     };
     try{
-      const res=await fetch("https://api.anthropic.com/v1/messages",{
-        method:"POST",headers:{"Content-Type":"application/json"},
-        body:JSON.stringify({
-          model:"claude-sonnet-4-20250514",max_tokens:800,
-          system:"You are an expert enterprise AE coach at Amplitude. Write concise, specific, grounded content. No filler or generic language.",
-          messages:[{role:"user",content:prompts[field]}],
-          // Production: add MCP servers below for live Salesforce + Slack + Glean context
-          // mcp_servers:[
-          //   {type:"url",url:"https://amplitude-salesforce-mcp.../mcp/sse",name:"salesforce"},
-          //   {type:"url",url:"https://mcp.slack.com/mcp",name:"slack"},
-          //   {type:"url",url:"https://amplitude-be.glean.com/mcp/claude-connector",name:"glean"},
-          // ]
-        }),
-      });
-      const d=await res.json();
-      setField(field,d.content?.[0]?.text||"");
-    }catch{setField(field,"[AI draft unavailable — please fill in manually]");}
+      // Note: AI drafts require a backend proxy with an API key.
+      // For now, pre-fill with account context so AEs have a useful starting point.
+      const lines = [];
+      if(sfdc?.csNextSteps) lines.push("CS context: " + sfdc.csNextSteps.slice(0,200));
+      if(sfdc?.topics?.length) lines.push("Their RSVP priorities: " + sfdc.topics.slice(0,3).join("; "));
+      if(field==="anecdote") setField(field, "[Draft your talking points here — consider referencing their RSVP topics and recent Salesforce activity above]");
+      else if(field==="outcome") setField(field, "[Describe the business goal you want their attendance to achieve — e.g. renewal commitment, expansion conversation, exec relationship]");
+      else if(field==="avoid") setField(field, "[Note any topics, open issues, or sensitivities our exec team should avoid bringing up]");
+    }catch{setField(field,"[Please fill in manually]");}
     finally{setAiLoading(p=>({...p,[field]:false}));}
   }
- 
+
   async function handleSubmit(){
     setSubmitting(true);setSubmitError(null);
     const payload={
@@ -531,7 +587,7 @@ function App(){
       setSubmitError(`Submission failed: ${e.message}. Please reach out to claire.butler@amplitude.com.`);
     }finally{setSubmitting(false);}
   }
- 
+
   if(submitted){
     return(
       <div style={{background:B.white,minHeight:"100vh",display:"flex",flexDirection:"column",alignItems:"center",justifyContent:"center",padding:40,fontFamily:B.font}}>
@@ -551,11 +607,11 @@ function App(){
       </div>
     );
   }
- 
+
   return(
     <div style={{background:B.white,minHeight:"100vh",fontFamily:B.font}}>
       <style>{`@keyframes spin{to{transform:rotate(360deg)}}@keyframes up{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}*{box-sizing:border-box}textarea,select,input{font-family:inherit}textarea::placeholder,input::placeholder{color:${B.gray30}}`}</style>
- 
+
       {/* Header */}
       <div style={{borderBottom:`1px solid ${B.gray20}`,padding:"13px 22px",display:"flex",alignItems:"center",justifyContent:"space-between",background:B.white,position:"sticky",top:0,zIndex:10,boxShadow:"0 1px 0 rgba(0,0,0,0.04)"}}>
         <div style={{display:"flex",alignItems:"center",gap:10}}>
@@ -564,9 +620,9 @@ function App(){
         </div>
         {aeData&&<Chip label={`${em?.icon} ${aeData.event}`} color={em?.color||B.blue} bg={em?.bg}/>}
       </div>
- 
+
       <div style={{maxWidth:640,margin:"0 auto",padding:"26px 22px"}}>
- 
+
         {/* ── STEP 0: SELECT AE ── */}
         {step===0&&(
           <div style={{animation:"up 0.35s ease"}}>
@@ -579,6 +635,7 @@ function App(){
                 <optgroup label="── San Diego CAB ──────────────">{Object.entries(AE_ROSTER).filter(([,v])=>v.event==="San Diego CAB").map(([n])=><option key={n} value={n}>{n}</option>)}</optgroup>
                 <optgroup label="── San Diego EAB ──────────────">{Object.entries(AE_ROSTER).filter(([,v])=>v.event==="San Diego EAB").map(([n])=><option key={n} value={n}>{n}</option>)}</optgroup>
                 <optgroup label="── London CAB ─────────────────">{Object.entries(AE_ROSTER).filter(([,v])=>v.event==="London CAB").map(([n])=><option key={n} value={n}>{n}</option>)}</optgroup>
+                <optgroup label="── London EAB ──────────────────">{Object.entries(AE_ROSTER).filter(([,v])=>v.event==="London EAB").map(([n])=><option key={n} value={n}>{n}</option>)}</optgroup>
               </select>
               <svg style={{position:"absolute",right:14,top:"50%",transform:"translateY(-50%)",pointerEvents:"none"}} width="12" height="8" viewBox="0 0 12 8" fill="none"><path d="M1 1L6 7L11 1" stroke={B.gray60} strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/></svg>
             </div>
@@ -591,12 +648,12 @@ function App(){
             </div>
           </div>
         )}
- 
+
         {/* ── STEPS 1-4 ── */}
         {step>=1&&(
           <div style={{animation:"up 0.3s ease"}}>
             <StepBar current={step-1}/>
- 
+
             {/* Customer picker */}
             {step===1&&!customer&&(
               <div>
@@ -617,7 +674,7 @@ function App(){
                 </div>
               </div>
             )}
- 
+
             {/* Verify & review */}
             {step===1&&customer&&(
               <div>
@@ -667,14 +724,14 @@ function App(){
                 ):null}
               </div>
             )}
- 
+
             {/* Add intel — MANDATORY */}
             {step===2&&customer&&(
               <div>
                 <h2 style={{fontSize:17,fontWeight:700,color:B.black,margin:"0 0 4px"}}>Add key requests</h2>
                 <p style={{fontSize:13,color:B.gray60,margin:"0 0 6px"}}>Please fill in key talking points, desired outcomes, any hot button issues and anything else relevant for our executive team to know when interacting with your customer while on site.</p>
                 <div style={{padding:"8px 12px",background:`${B.amber}0c`,border:`1px solid ${B.amber}33`,borderRadius:8,marginBottom:16,fontSize:11,color:B.amber,fontFamily:B.font}}>
-                  ⓘ All five fields must be filled or skipped before you can continue.
+                  ⓘ All fields must be filled or skipped before you can continue.
                 </div>
                 <MandatoryField label="Conversation anecdotes & talking points" hint="Best way to open or deepen a conversation with this person?" placeholder={`e.g. ${customer.name} mentioned they're rebuilding their analytics stack around…`} value={form.anecdote} onChange={v=>setField("anecdote",v)} skipped={form.anecdoteSkip} onSkip={v=>setField("anecdoteSkip",v)} isLoading={aiLoading.anecdote} onGenerate={()=>genAI("anecdote")}/>
                 <MandatoryField label="Desired outcome from this event" hint="What business goals should be accomplished by their attendance?" placeholder="e.g. Secure commitment to expand to Experiment before renewal…" value={form.outcome} onChange={v=>setField("outcome",v)} skipped={form.outcomeSkip} onSkip={v=>setField("outcomeSkip",v)} isLoading={aiLoading.outcome} onGenerate={()=>genAI("outcome")}/>
@@ -683,13 +740,13 @@ function App(){
                 {!intelComplete&&<div style={{padding:"8px 12px",background:`${B.red}08`,border:`1px solid ${B.red}22`,borderRadius:8,fontSize:11,color:B.red,fontFamily:B.font}}>↑ Fill in or skip all fields above to continue.</div>}
               </div>
             )}
- 
+
             {/* Matchmaking */}
             {step===3&&(
               <div>
                 <h2 style={{fontSize:17,fontWeight:700,color:B.black,margin:"0 0 4px"}}>Matchmaking</h2>
                 <p style={{fontSize:13,color:B.gray60,margin:"0 0 18px"}}>Suggest peer connections and flag which Amplitude execs {customer?.name?.split(" ")[0]} should spend time with. Peer list is filtered to {aeData?.event} attendees only.</p>
- 
+
                 {/* Peer matches — same-event only */}
                 <div style={{marginBottom:20}}>
                   <div style={{fontSize:11,fontWeight:700,color:B.black,letterSpacing:"0.06em",marginBottom:10,fontFamily:B.font}}>PEER CUSTOMER CONNECTIONS</div>
@@ -716,7 +773,7 @@ function App(){
                     </div>
                   ))}
                 </div>
- 
+
                 {/* Exec checkboxes */}
                 <div style={{marginBottom:20}}>
                   <div style={{fontSize:11,fontWeight:700,color:B.black,letterSpacing:"0.06em",marginBottom:4,fontFamily:B.font}}>AMPLITUDE EXECS TO CONNECT WITH</div>
@@ -745,7 +802,7 @@ function App(){
                     </div>
                   )}
                 </div>
- 
+
                 {/* Important convos */}
                 <div>
                   <label style={{fontSize:13,fontWeight:600,color:B.black,display:"block",marginBottom:4,fontFamily:B.font}}>Important conversations to engineer <span style={{fontSize:10,color:B.gray50,fontWeight:400}}>(optional)</span></label>
@@ -753,7 +810,7 @@ function App(){
                 </div>
               </div>
             )}
- 
+
             {/* Review & submit */}
             {step===4&&(
               <div>
@@ -784,7 +841,7 @@ function App(){
                 {submitError&&<div style={{marginTop:14,padding:"10px 12px",background:`${B.red}0a`,border:`1px solid ${B.red}33`,borderRadius:8,fontSize:12,color:B.red,fontFamily:B.font}}>{submitError}</div>}
               </div>
             )}
- 
+
             {/* Nav buttons */}
             <div style={{display:"flex",justifyContent:"space-between",marginTop:24,paddingTop:18,borderTop:`1px solid ${B.gray20}`}}>
               <button onClick={()=>{
@@ -792,7 +849,7 @@ function App(){
                 else if(step===1&&!customer){setAe("");setStep(0);}
                 else setStep(s=>s-1);
               }} style={{padding:"8px 18px",borderRadius:8,border:`1px solid ${B.gray20}`,background:"transparent",color:B.gray60,fontSize:13,cursor:"pointer",fontFamily:B.font}}>← Back</button>
- 
+
               {step===1&&customer&&(
                 <button onClick={()=>setStep(2)} disabled={!verified&&corrections.length===0} style={{padding:"8px 22px",borderRadius:8,border:"none",background:verified||corrections.length>0?B.blue:B.gray20,color:verified||corrections.length>0?B.white:B.gray50,fontSize:13,fontWeight:600,cursor:verified||corrections.length>0?"pointer":"default",fontFamily:B.font}}>Continue →</button>
               )}
@@ -815,8 +872,8 @@ function App(){
     </div>
   );
 }
- 
- 
+
+
     const domContainer = document.getElementById('root');
     const root = ReactDOM.createRoot(domContainer);
     root.render(React.createElement(App));

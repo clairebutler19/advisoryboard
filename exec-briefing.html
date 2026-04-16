@@ -1,0 +1,610 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>CAB/EAB Executive Briefing | Amplitude FY26</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --blue:#0052F2;--blue-dark:#001A4F;--blue-mid:#1A3FAF;--blue-light:#EEF3FF;
+      --black:#08090A;--white:#FFFFFF;
+      --g05:#F7F8FA;--g10:#F0F2F5;--g20:#DDE1E9;--g40:#B0B8C4;--g60:#6B7280;--g80:#374151;
+      --green:#16A34A;--green-bg:rgba(22,163,74,0.09);
+      --amber:#D97706;--amber-bg:rgba(217,119,6,0.09);
+      --red:#DC2626;--red-bg:rgba(220,38,38,0.09);
+      --font-h:'Syne',sans-serif;--font-b:'DM Sans',sans-serif;
+      --r:10px;--r-sm:7px;
+      --shadow:0 2px 8px rgba(0,0,0,0.07),0 1px 2px rgba(0,0,0,0.04);
+      --shadow-lg:0 8px 28px rgba(0,0,0,0.11),0 2px 6px rgba(0,0,0,0.06);
+    }
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    body{font-family:var(--font-b);background:var(--g05);color:var(--black);-webkit-font-smoothing:antialiased;min-height:100vh}
+
+    /* ── HEADER ── */
+    .hdr{background:var(--blue-dark);height:54px;display:flex;align-items:center;justify-content:space-between;padding:0 28px;position:sticky;top:0;z-index:200}
+    .hdr-l{display:flex;align-items:center;gap:12px}
+    .hdr-logo{display:flex;align-items:center;gap:8px}
+    .hdr-wm{font-family:var(--font-h);font-weight:700;font-size:15px;color:#fff;letter-spacing:-.2px}
+    .hdr-div{width:1px;height:18px;background:rgba(255,255,255,.2)}
+    .hdr-sub{font-size:13px;color:rgba(255,255,255,.55)}
+    .hdr-conf{font-size:10px;font-weight:700;color:rgba(255,255,255,.4);background:rgba(255,255,255,.1);padding:3px 10px;border-radius:99px;letter-spacing:.06em}
+
+    /* ── TOOLBAR ── */
+    .toolbar{background:#fff;border-bottom:1px solid var(--g20);padding:10px 28px;display:flex;align-items:center;gap:10px;flex-wrap:wrap;position:sticky;top:54px;z-index:100}
+    .fl{display:flex;align-items:center;gap:8px}
+    .fl-label{font-size:10px;font-weight:700;color:var(--g60);letter-spacing:.07em;text-transform:uppercase;white-space:nowrap}
+    .pills{display:flex;gap:5px;flex-wrap:wrap}
+    .pill{font-family:var(--font-b);font-size:12px;font-weight:500;padding:4px 11px;border-radius:99px;border:1.5px solid var(--g20);background:#fff;color:var(--g60);cursor:pointer;transition:all .15s;white-space:nowrap}
+    .pill:hover{border-color:var(--blue);color:var(--blue)}
+    .pill.on{background:var(--blue);border-color:var(--blue);color:#fff}
+    .tb-r{margin-left:auto;display:flex;align-items:center;gap:10px}
+    .sw{position:relative}
+    .si{position:absolute;left:9px;top:50%;transform:translateY(-50%);color:var(--g40);pointer-events:none}
+    .sb{font-family:var(--font-b);font-size:13px;padding:6px 11px 6px 30px;border-radius:8px;border:1.5px solid var(--g20);background:var(--g05);outline:none;width:210px;color:var(--black)}
+    .sb:focus{border-color:var(--blue);background:#fff}
+    .stat{font-size:12px;color:var(--g60);white-space:nowrap}
+    .stat strong{color:var(--black)}
+    .refresh-btn{font-family:var(--font-b);font-size:12px;font-weight:600;padding:5px 13px;border-radius:7px;border:1.5px solid var(--blue);background:var(--blue-light);color:var(--blue);cursor:pointer;transition:all .15s}
+    .refresh-btn:hover{background:var(--blue);color:#fff}
+
+    /* ── MAIN ── */
+    .main{padding:24px 28px 60px;max-width:1440px;margin:0 auto}
+
+    /* ── EVENT SECTION ── */
+    .event-section{margin-bottom:40px}
+    .event-hdr{display:flex;align-items:center;gap:12px;margin-bottom:16px;padding-bottom:12px;border-bottom:2px solid var(--g20)}
+    .event-title{font-family:var(--font-h);font-size:20px;font-weight:800;color:var(--black);letter-spacing:-.3px}
+    .event-dot{width:10px;height:10px;border-radius:50%;flex-shrink:0}
+    .event-count{font-size:12px;color:var(--g60);margin-left:2px}
+    .event-dates{font-size:11px;color:var(--g40);margin-left:auto;font-weight:500}
+
+    /* ── CARDS GRID ── */
+    .cards-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:12px}
+
+    /* ── CUSTOMER CARD ── */
+    .ccard{background:#fff;border-radius:var(--r);border:1px solid var(--g20);box-shadow:var(--shadow);overflow:hidden;transition:box-shadow .2s,border-color .2s}
+    .ccard:hover{box-shadow:var(--shadow-lg);border-color:var(--blue)}
+    .ccard.open{border-color:var(--blue);box-shadow:var(--shadow-lg)}
+
+    .ccard-top{padding:14px 16px 12px;cursor:pointer;display:flex;align-items:flex-start;gap:11px}
+    .av{width:42px;height:42px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:var(--font-h);font-size:13px;font-weight:700;flex-shrink:0;border:2px solid rgba(0,0,0,.06)}
+    .cinfo{flex:1;min-width:0}
+    .cname{font-family:var(--font-h);font-size:14px;font-weight:700;color:var(--black);line-height:1.2}
+    .ctitle{font-size:11px;color:var(--g60);margin-top:1px;line-height:1.3}
+    .cco{font-size:12px;font-weight:600;color:var(--g80);margin-top:2px}
+    .chevron{flex-shrink:0;margin-top:3px;color:var(--g40);transition:transform .2s;font-size:12px}
+    .ccard.open .chevron{transform:rotate(180deg)}
+
+    .ccard-meta{padding:0 16px 12px;display:grid;grid-template-columns:repeat(3,1fr);gap:6px}
+    .cm{background:var(--g05);border-radius:var(--r-sm);padding:7px 9px}
+    .cm-l{font-size:9px;font-weight:700;color:var(--g40);letter-spacing:.08em;text-transform:uppercase;margin-bottom:2px}
+    .cm-v{font-size:12px;font-weight:700;color:var(--black)}
+    .cm-v.gr{color:var(--green)}.cm-v.am{color:var(--amber)}.cm-v.rd{color:var(--red)}
+
+    .ccard-ae{padding:0 16px 10px;font-size:11px;color:var(--g60)}
+    .ccard-ae span{font-weight:600;color:var(--g80)}
+
+
+    /* ── DROPDOWN DETAIL ── */
+    .detail{display:none;border-top:1px solid var(--g10)}
+    .ccard.open .detail{display:block}
+    .d-body{padding:14px 16px}
+    .d-sec{margin-bottom:14px}
+    .d-sec:last-child{margin-bottom:0}
+    .d-lbl{font-size:10px;font-weight:700;color:var(--g40);letter-spacing:.07em;text-transform:uppercase;margin-bottom:6px;display:flex;align-items:center;gap:5px}
+    .d-txt{font-size:12px;color:var(--g80);line-height:1.6;background:var(--g05);border-radius:var(--r-sm);padding:9px 11px}
+    .d-txt.warn{background:var(--amber-bg);border:1px solid rgba(217,119,6,.2);color:var(--g80)}
+    .d-tags{display:flex;flex-wrap:wrap;gap:5px}
+    .d-tag{font-size:10px;font-weight:600;padding:2px 9px;border-radius:99px;background:var(--blue-light);color:var(--blue)}
+    .d-tag.exec{background:var(--blue-dark);color:#fff}
+    .d-tag.prod{background:var(--g10);color:var(--g60)}
+    .peer-item{background:var(--g05);border-radius:var(--r-sm);padding:8px 10px;margin-bottom:5px}
+    .peer-item:last-child{margin-bottom:0}
+    .peer-nm{font-size:12px;font-weight:700;color:var(--black)}
+    .peer-rs{font-size:11px;color:var(--g60);margin-top:1px}
+    .no-brief{background:var(--g10);border-radius:var(--r-sm);padding:12px;text-align:center;font-size:12px;color:var(--g40);font-style:italic}
+
+    /* ── EXEC SPOTLIGHT SECTION ── */
+    .spotlight-wrap{margin-bottom:40px}
+    .spotlight-title{font-family:var(--font-h);font-size:20px;font-weight:800;letter-spacing:-.3px;color:var(--black);margin-bottom:4px}
+    .spotlight-sub{font-size:13px;color:var(--g60);margin-bottom:18px}
+    .exec-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:14px}
+    .exec-card{background:#fff;border-radius:var(--r);border:1px solid var(--g20);box-shadow:var(--shadow);overflow:hidden}
+    .exec-card-hdr{background:var(--blue-dark);padding:12px 16px;display:flex;align-items:center;gap:10px}
+    .exec-av{width:36px;height:36px;border-radius:50%;background:rgba(255,255,255,.15);display:flex;align-items:center;justify-content:center;font-family:var(--font-h);font-size:12px;font-weight:700;color:#fff;flex-shrink:0}
+    .exec-nm{font-family:var(--font-h);font-size:14px;font-weight:700;color:#fff}
+    .exec-role{font-size:11px;color:rgba(255,255,255,.55);margin-top:1px}
+    .exec-events{display:flex;gap:4px;margin-left:auto}
+    .exec-ev-badge{font-size:9px;font-weight:700;padding:2px 7px;border-radius:99px;background:rgba(255,255,255,.15);color:rgba(255,255,255,.7)}
+    .top5-list{padding:12px 16px}
+    .t5-item{display:flex;align-items:flex-start;gap:10px;padding:9px 0;border-bottom:1px solid var(--g10)}
+    .t5-item:last-child{border-bottom:none}
+    .t5-rank{font-family:var(--font-h);font-size:16px;font-weight:800;color:var(--g20);width:20px;flex-shrink:0;line-height:1}
+    .t5-info{flex:1;min-width:0}
+    .t5-name{font-size:13px;font-weight:700;color:var(--black)}
+    .t5-co{font-size:11px;color:var(--g60)}
+    .t5-note{font-size:11px;color:var(--g80);margin-top:3px;line-height:1.4}
+    .t5-arr{font-size:11px;font-weight:700;color:var(--blue);white-space:nowrap}
+    .no-assigns{padding:16px;text-align:center;font-size:12px;color:var(--g40);font-style:italic}
+
+    /* ── STATES ── */
+    .state-msg{text-align:center;padding:80px 20px;display:flex;flex-direction:column;align-items:center;gap:12px}
+    .spin{width:30px;height:30px;border:3px solid var(--g20);border-top-color:var(--blue);border-radius:50%;animation:spin .8s linear infinite}
+    @keyframes spin{to{transform:rotate(360deg)}}
+    @keyframes fadeUp{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:translateY(0)}}
+    .ccard{animation:fadeUp .25s ease both}
+  </style>
+</head>
+<body>
+
+<div class="hdr">
+  <div class="hdr-l">
+    <div class="hdr-logo">
+      <svg width="18" height="16" viewBox="0 0 22 20" fill="none"><path d="M11 0L22 20H0L11 0Z" fill="white"/></svg>
+      <span class="hdr-wm">Amplitude</span>
+    </div>
+    <div class="hdr-div"></div>
+    <span class="hdr-sub">Executive Briefing — FY26 Advisory Boards</span>
+  </div>
+  <span class="hdr-conf">CONFIDENTIAL</span>
+</div>
+
+<div class="toolbar">
+  <div class="fl">
+    <span class="fl-label">Event</span>
+    <div class="pills">
+      <button class="pill on" data-ev="all">All events</button>
+      <button class="pill" data-ev="San Diego CAB">🌊 SD CAB · May 4–6</button>
+      <button class="pill" data-ev="San Diego EAB">🌴 SD EAB · May 6–8</button>
+      <button class="pill" data-ev="London CAB">🇬🇧 London CAB · May 18–20</button>
+      <button class="pill" data-ev="London EAB">🇬🇧 London EAB · May 20–22</button>
+    </div>
+  </div>
+  <div class="fl">
+    <span class="fl-label">Exec</span>
+    <div class="pills" id="exec-pills">
+      <button class="pill on" data-ex="all">All</button>
+      <button class="pill" data-ex="Nate Crook">Nate</button>
+      <button class="pill" data-ex="Jenna Elliott">Jenna</button>
+      <button class="pill" data-ex="Wade Chambers">Wade</button>
+      <button class="pill" data-ex="Gab Menachem">Gab</button>
+      <button class="pill" data-ex="Gamon Yaklich">Gamon</button>
+      <button class="pill" data-ex="Rob Bow">Rob</button>
+      <button class="pill" data-ex="Chris Yu">Chris</button>
+      <button class="pill" data-ex="Eric Metelka">Eric</button>
+      <button class="pill" data-ex="Jacob Newman">Jacob</button>
+      <button class="pill" data-ex="Ran Chen">Ran</button>
+    </div>
+  </div>
+  <div class="tb-r">
+    <div class="sw">
+      <svg class="si" width="13" height="13" viewBox="0 0 14 14" fill="none"><circle cx="6" cy="6" r="4.5" stroke="#B0B8C4" stroke-width="1.5"/><path d="M10 10L12.5 12.5" stroke="#B0B8C4" stroke-width="1.5" stroke-linecap="round"/></svg>
+      <input class="sb" id="search-input" placeholder="Search customer, company, AE…">
+    </div>
+    <span class="stat" id="stat-bar">Loading…</span>
+    <button class="refresh-btn" onclick="loadBriefs()">↻ Refresh</button>
+  </div>
+</div>
+
+<div class="main" id="main">
+  <div class="state-msg"><div class="spin"></div><div style="font-family:var(--font-h);font-size:17px;font-weight:700">Loading briefs…</div></div>
+</div>
+
+<script>
+const SHEETS_URL = "https://script.google.com/a/macros/amplitude.com/s/AKfycbwAK-_cklDe-09YFZJ5P5Fz3ma7Cup4YSLT7431TnaGflLzD8WQRDL3mC4qDuB8H_TL/exec";
+
+const EVENTS = [
+  {key:"San Diego CAB", icon:"🌊", color:"#0052F2", dates:"May 4–6, 2026"},
+  {key:"San Diego EAB", icon:"🌴", color:"#001A4F", dates:"May 6–8, 2026"},
+  {key:"London CAB",    icon:"🇬🇧", color:"#374151", dates:"May 18–20, 2026"},
+  {key:"London EAB",    icon:"🇬🇧", color:"#6B7280", dates:"May 20–22, 2026"},
+];
+
+const EXECS = [
+  {id:"Nate Crook",    role:"Chief Commercial Officer",        events:["San Diego CAB","San Diego EAB","London CAB"]},
+  {id:"Jenna Elliott", role:"SVP, Global Customer Success",    events:["San Diego CAB","San Diego EAB","London CAB"]},
+  {id:"Wade Chambers", role:"Chief Engineering Officer",       events:["San Diego CAB","San Diego EAB","London CAB"]},
+  {id:"Gab Menachem",  role:"Chief Product Officer",           events:["San Diego CAB","San Diego EAB","London CAB"]},
+  {id:"Gamon Yaklich", role:"Strategic VP, Sales",             events:["San Diego CAB","San Diego EAB"]},
+  {id:"Rob Bow",       role:"VP, Emerging Enterprise",         events:["San Diego EAB"]},
+  {id:"Chris Yu",      role:"VP, Product Management",          events:["San Diego CAB","San Diego EAB","London CAB"]},
+  {id:"Eric Metelka",  role:"Dir, Product Management",         events:["San Diego CAB","London CAB"]},
+  {id:"Jacob Newman",  role:"Principal Product Manager",       events:["San Diego CAB","San Diego EAB","London CAB"]},
+  {id:"Ran Chen",      role:"Head of Growth, Product",         events:["San Diego CAB","San Diego EAB","London CAB"]},
+];
+
+const CSA = {
+  "bentley": "Abi Moosa",
+  "bupa": "Elizaveta Koronaeva",
+  "carwow": "Rohit Ramaiah",
+  "cisco": "Xin Cao",
+  "empower": "Arjun Thakar",
+  "fanduel": "Anuj Sharma",
+  "fox": "Alex Qian-Wang",
+  "glassdoor": "Xin Cao",
+  "hertz": "Sam Conde",
+  "ibm": "Anuj Sharma",
+  "nvidia": "Ted Clark",
+  "procore": "Derrick Joe",
+  "qualtrics": "Alex Qian-Wang",
+  "realtor": "Arjun Thakar",
+  "rocket": "Will Park",
+  "skyshow": "Rohit Ramaiah",
+  "td": "Lucas Cyr",
+  "economist": "Ailbhe Cunningham",
+  "udemy": "Jon Shek",
+  "unum": "Nitin Sethi",
+  "whoop": "Abi Moosa",
+};
+
+const ALL = [
+  // ── SAN DIEGO CAB ──────────────────────────────────────────────────────────
+  {ae:"Dan Walsh",        event:"San Diego CAB", customer:"Rachelle Fischer",       title:"Director, Data Science & Analytics",              company:"Abbott",              arr:"$175K", health:78, util:94,  products:["Analytics","Session Replay","Experiment"],      renewal:"Nov 2026", mau:null,  tickets:0},
+  {ae:"Dan Walsh",        event:"San Diego CAB", customer:"Nick Skapyak",            title:"Sr. eCommerce Marketing Manager",                  company:"Dairy Queen",         arr:"$686K", health:72, util:34,  products:["Analytics","Web Experimentation","Experiment"], renewal:"Nov 2028", mau:30,   tickets:0},
+  {ae:"Mike Sullivan",    event:"San Diego CAB", customer:"Seth Stuck",              title:"VP, Product Research & Analytics",                 company:"FOX",                 arr:"$1.3M", health:88, util:107, products:["Analytics","CDP","Session Replay","PSP"],        renewal:"Jun 2028", mau:76,   tickets:2},
+  {ae:"Mike Sullivan",    event:"San Diego CAB", customer:"Gabriella Munoz",         title:"Director, Product Analytics",                      company:"SiriusXM",            arr:"$220K", health:74, util:80,  products:["Analytics"],                                   renewal:"Nov 2026", mau:null, tickets:0},
+  {ae:"Greg Sharp",       event:"San Diego CAB", customer:"Hima Chintalapati",       title:"Program Lead, Analytics",                          company:"IBM",                 arr:"$1.5M", health:85, util:73,  products:["Analytics","CDP","Session Replay","PSP","Experiment"], renewal:"Dec 2027", mau:1069, tickets:3},
+  {ae:"Greg Sharp",       event:"San Diego CAB", customer:"Anne Billmeyer",          title:"Sr. Director, Insights & Experimentation",         company:"FanDuel",             arr:"$5.4M", health:80, util:27,  products:["Analytics","CDP","Web Experimentation","Session Replay","PSP","Experiment","Guides & Surveys"], renewal:"Sep 2028", mau:674, tickets:3},
+  {ae:"Greg Sharp",       event:"San Diego CAB", customer:"Travis Johnson",          title:"Product Analytics Leader",                         company:"Cox Automotive",      arr:"$175K", health:70, util:80,  products:["Analytics"],                                   renewal:"Sep 2026", mau:null, tickets:0},
+  {ae:"Greg Sharp",       event:"San Diego CAB", customer:"Mike O'Rourke",           title:"Sr. Director, Product Analytics",                  company:"NBA",                 arr:"$3.6M", health:75, util:16,  products:["Analytics","CDP","Session Replay","PSP","Experiment","Warehouse Native","Guides & Surveys"], renewal:"Sep 2027", mau:154, tickets:2},
+  {ae:"Grace Evans",      event:"San Diego CAB", customer:"Amanda Hamilton",         title:"Sr. Director, Platform Operations",                company:"McClatchy",           arr:"$853K", health:77, util:100, products:["Analytics","CDP","Session Replay","Experiment","Guides & Surveys"], renewal:"Mar 2027", mau:142, tickets:0},
+  {ae:"Michael McClune",  event:"San Diego CAB", customer:"Eric Lamy",               title:"Director Data / VP AI & Data Product (TKO)",       company:"On Location / TKO",   arr:"$195K", health:80, util:80,  products:["Analytics"],                                   renewal:"Dec 2026", mau:null, tickets:0},
+  {ae:"Kyle McDaniel",    event:"San Diego CAB", customer:"Chuck Navarro",           title:"VP, Marketing Technology",                         company:"Warner Bros. Discovery",arr:"$620K",health:74, util:85,  products:["Analytics","Session Replay"],                  renewal:"Aug 2026", mau:null, tickets:0},
+  {ae:"Taylor Sollinger", event:"San Diego CAB", customer:"Matt Luizzi",             title:"Sr. Director of Analytics",                        company:"WHOOP",               arr:"$1.4M", health:86, util:99,  products:["Analytics","CDP","PSP","Guides & Surveys","AI Feedback"], renewal:"Dec 2027", mau:189, tickets:0},
+  {ae:"Taylor Sollinger", event:"San Diego CAB", customer:"Marcus Kellermann",       title:"Sr. Director, Digital Experience Engineering",     company:"Bentley Systems",     arr:"$1.0M", health:65, util:5,   products:["Analytics","Session Replay","PSP","Experiment","Guides & Surveys"], renewal:"Sep 2028", mau:93, tickets:0, risk:"5% event volume utilization on $1M contract"},
+  {ae:"Glen Horsley",     event:"San Diego CAB", customer:"Nagaraju Unnava",         title:"Director, Software Engineering",                   company:"Western Union",       arr:"$252K", health:70, util:112, products:["Analytics"],                                   renewal:"Oct 2026", mau:339, tickets:1, risk:"Adobe competitive risk; renewal Oct 2026"},
+  {ae:"Glen Horsley",     event:"San Diego CAB", customer:"Geoff Coyner",            title:"Head of Product Data",                             company:"Qualtrics",           arr:"$454K", health:82, util:94,  products:["Analytics","PSP","Experiment","Guides & Surveys"], renewal:"Oct 2028", mau:444, tickets:1},
+  {ae:"Nate Harrison",    event:"San Diego CAB", customer:"Lina Blackman",           title:"Director, Product Analytics",                      company:"Squarespace",         arr:"$544K", health:78, util:83,  products:["Analytics"],                                   renewal:"Mar 2028", mau:249, tickets:1},
+  {ae:"Nancy Safar",      event:"San Diego CAB", customer:"Joseph Sansotta",         title:"Head VP, Mobile Banking & Connected Conversation Platforms", company:"TD Bank",  arr:"$658K", health:72, util:71,  products:["Analytics","Session Replay","PSP","Guides & Surveys","Activation"], renewal:"Feb 2029", mau:26, tickets:0},
+  {ae:"Christy Barnett",  event:"San Diego CAB", customer:"Matt Jenkins",            title:"Sr. Manager, Digital Analytics",                   company:"H-E-B",               arr:"$110K", health:72, util:77,  products:["Analytics"],                                   renewal:"Nov 2026", mau:null, tickets:0},
+  {ae:"Adam Yapkowitz",   event:"San Diego CAB", customer:"Matt Mullen",             title:"Director, Product Management",                     company:"PGA Tour",            arr:"$145K", health:78, util:82,  products:["Analytics","Session Replay"],                  renewal:"Aug 2026", mau:null, tickets:0},
+  {ae:"Tyler Benham",     event:"San Diego CAB", customer:"Ajay Murali",             title:"Sr. Director, Data Science & Analytics",           company:"Procore",             arr:"$695K", health:75, util:58,  products:["Analytics","Session Replay","PSP"],             renewal:"Feb 2027", mau:116, tickets:7, risk:"Declining MAU (-14%); 7 open tickets"},
+  {ae:"Clay Crema",       event:"San Diego CAB", customer:"Deepak Thakral",          title:"VP, Product",                                      company:"Udemy",               arr:"$481K", health:75, util:29,  products:["Analytics","Session Replay","Guides & Surveys"], renewal:"Aug 2028", mau:96, tickets:2},
+  {ae:"Sally Bregman",    event:"San Diego CAB", customer:"Sai Sreebhashyam",        title:"Assistant VP, Data & Analytics",                   company:"Unum",                arr:"$441K", health:72, util:66,  products:["Analytics","CDP","Session Replay","PSP"],       renewal:"Dec 2026", mau:31, tickets:0},
+
+  // ── SAN DIEGO EAB ──────────────────────────────────────────────────────────
+  {ae:"Sonia Xavier",           event:"San Diego EAB", customer:"Megan Lemire",              title:"VP, Product Development & Management",              company:"Empower Retirement",arr:"$2.1M", health:78, util:23,  products:["Analytics","CDP","Web Experimentation","Session Replay","PSP","Experiment","Guides & Surveys"], renewal:"Jul 2029", mau:119, tickets:5, risk:"23% utilization on $2.1M contract"},
+  {ae:"Sonia Xavier",           event:"San Diego EAB", customer:"Robert Gash",               title:"Chief Product Officer",                             company:"Hearst",             arr:"$280K", health:75, util:79,  products:["Analytics"],                                   renewal:"Aug 2026", mau:null, tickets:0},
+  {ae:"Sonia Xavier",           event:"San Diego EAB", customer:"Vidya Krishnakumar",        title:"SVP, Data Science, Analytics & Experimentation",    company:"Realtor.com",        arr:"$1.9M", health:72, util:39,  products:["Analytics","CDP","Session Replay","PSP","Experiment","Guides & Surveys"], renewal:"Oct 2027", mau:250, tickets:10, risk:"10 open tickets; WAU declining -21%"},
+  {ae:"Sean Bell McDermott",    event:"San Diego EAB", customer:"Francis 'Rico' Arrastia",   title:"CDTO",                                              company:"KFC / Yum!",         arr:"$720K", health:82, util:82,  products:["Analytics","Experiment"],                      renewal:"Jan 2027", mau:null, tickets:0},
+  {ae:"Sean Bell McDermott",    event:"San Diego EAB", customer:"Rob Costello",              title:"VP, Analytics",                                     company:"Rocket Mortgage",    arr:"$2.1M", health:76, util:67,  products:["Analytics","Session Replay","PSP","Experiment","Guides & Surveys"], renewal:"Feb 2027", mau:450, tickets:2},
+  {ae:"Sean Bell McDermott",    event:"San Diego EAB", customer:"Theodore Pizza",            title:"VP, Digital",                                       company:"Yum! Brands",        arr:"$580K", health:80, util:80,  products:["Analytics","Experiment"],                      renewal:"Dec 2026", mau:null, tickets:0},
+  {ae:"Sean Bell McDermott",    event:"San Diego EAB", customer:"Amber Zhao",               title:"Product Manager II, Consumer Technology Group",     company:"RBI / Popeyes",      arr:"$240K", health:73, util:78,  products:["Analytics"],                                   renewal:"Sep 2026", mau:null, tickets:0},
+  {ae:"Gamon Yaklich",          event:"San Diego EAB", customer:"Ari Capogeannis",           title:"Sr. Director, Enterprise Revenue Marketing",        company:"NVIDIA",             arr:"$115K", health:72, util:22,  products:["Analytics","PSP"],                             renewal:"Aug 2027", mau:55,   tickets:0, risk:"22% utilization — expansion opportunity"},
+  {ae:"Gamon Yaklich",          event:"San Diego EAB", customer:"Jason Cyr",                 title:"VP & Head of Design, Security & AI",               company:"Cisco SBG",          arr:"$702K", health:65, util:24,  products:["Analytics","PSP"],                             renewal:"Jun 2026", mau:118, tickets:0, risk:"Renewal in 76 days; 24% utilization"},
+  {ae:"Gamon Yaklich",          event:"San Diego EAB", customer:"Jeremy Echols",             title:"Director, Data Analytics",                          company:"Glassdoor",          arr:"$759K", health:76, util:76,  products:["Analytics","Session Replay","PSP","Experiment"], renewal:"Mar 2027", mau:132, tickets:0},
+  {ae:"Matt Hecht",             event:"San Diego EAB", customer:"Alexandra London",          title:"CMO",                                               company:"G2",                 arr:"$190K", health:82, util:82,  products:["Analytics","Session Replay"],                  renewal:"Feb 2027", mau:null, tickets:0},
+  {ae:"Adam Yapkowitz",         event:"San Diego EAB", customer:"Eric Hanson",               title:"VP, Product Development",                           company:"PGA Tour",           arr:"$145K", health:78, util:82,  products:["Analytics","Session Replay"],                  renewal:"Aug 2026", mau:null, tickets:0},
+  {ae:"PJ Franovic",            event:"San Diego EAB", customer:"Amit Goyal",                title:"CTO",                                               company:"Care.com",           arr:"$290K", health:78, util:83,  products:["Analytics","Experiment"],                      renewal:"Aug 2026", mau:null, tickets:0},
+  {ae:"PJ Franovic",            event:"San Diego EAB", customer:"Doug Cirillo",              title:"Head of Digital Experience & Growth",               company:"Vanguard",           arr:"$760K", health:80, util:80,  products:["Analytics","Experiment","Session Replay"],     renewal:"Jan 2027", mau:null, tickets:0},
+  {ae:"Cameron Curran",         event:"San Diego EAB", customer:"Pranav Mittal",             title:"SVP, Product Management",                           company:"Hertz",              arr:"$378K", health:80, util:144, products:["Analytics","Web Experimentation","Session Replay","PSP","Experiment"], renewal:"Mar 2028", mau:83, tickets:1, risk:"Over event volume at 144%"},
+  {ae:"Shaine Salvador",        event:"San Diego EAB", customer:"Brian Sekerak",             title:"VP, Digital Experience",                            company:"James Hardie",       arr:"$145K", health:70, util:70,  products:["Analytics"],                                   renewal:"Oct 2026", mau:null, tickets:0},
+
+  // ── LONDON CAB ─────────────────────────────────────────────────────────────
+  {ae:"Massimo Osako",    event:"London CAB", customer:"Oriol Batlle Linares",   title:"Director of Data & Analytics",      company:"Preply",               arr:"$220K", health:80, util:94,  products:["Analytics"],                                   renewal:"Sep 2027", mau:146, tickets:0},
+  {ae:"Aitana Congost",   event:"London CAB", customer:"Dan Grainger",            title:"Head of Analytics",                 company:"Haven / Bourne Leisure",arr:"$120K", health:75, util:80,  products:["Analytics"],                                   renewal:"Nov 2026", mau:null, tickets:0},
+  {ae:"Aitana Congost",   event:"London CAB", customer:"Danny Starr",             title:"CX Product Lead",                   company:"Global Radio",          arr:"$239K", health:78, util:99,  products:["Analytics","Session Replay","Experiment","Guides & Surveys"], renewal:"Jul 2028", mau:48, tickets:0},
+  {ae:"Aitana Congost",   event:"London CAB", customer:"Charles Butler",          title:"Director of Digital Propositions",  company:"Bupa",                  arr:"$180K", health:76, util:78,  products:["Analytics"],                                   renewal:"Dec 2026", mau:null, tickets:0},
+  {ae:"Daniel Almond",    event:"London CAB", customer:"Shay Cooper",             title:"Director, Data & Analytics",        company:"ReachPLC",              arr:"$205K", health:78, util:78,  products:["Analytics","Session Replay"],                  renewal:"Oct 2026", mau:null, tickets:0},
+  {ae:"Bruno Barbagli",   event:"London CAB", customer:"Tiago Pérez",             title:"Head of Data",                      company:"Voicemod",              arr:"$390K", health:78, util:93,  products:["Analytics","CDP"],                             renewal:"Dec 2028", mau:47,   tickets:0},
+  {ae:"Paul Baier",       event:"London CAB", customer:"Michael Attenkofer",      title:"Head of Web Analytics",             company:"On",                    arr:"$200K", health:72, util:95,  products:["Analytics","Experiment"],                      renewal:"Jul 2026", mau:104, tickets:0, risk:"Renewal in 107 days"},
+  {ae:"David Mischel",    event:"London CAB", customer:"Jose Luis Loren",         title:"Head of Data & Analytics",          company:"Fressnapf",             arr:"$110K", health:68, util:68,  products:["Analytics"],                                   renewal:"Aug 2026", mau:null, tickets:0},
+  {ae:"Niklas Fogander",  event:"London CAB", customer:"Alexander Remen",         title:"VP, Product",                       company:"Kahoot",                arr:"$431K", health:76, util:65,  products:["Analytics","Session Replay"],                  renewal:"Nov 2027", mau:148, tickets:5},
+  {ae:"Niklas Fogander",  event:"London CAB", customer:"Joost de Schepper",       title:"Director, User Growth Optimisation",company:"Spotify",               arr:"$475K", health:62, util:6,   products:["Analytics","Session Replay","PSP"],             renewal:"Dec 2027", mau:1,    tickets:0, risk:"Critical — 1 MAU, 6% utilization on $475K contract"},
+  {ae:"Stan Lysenko",     event:"London CAB", customer:"Irina Lyan",              title:"Head of Analytics",                 company:"Freedom Bank",          arr:"$80K",  health:65, util:65,  products:["Analytics"],                                   renewal:"Sep 2026", mau:null, tickets:0},
+  {ae:"Sophia Fellner",   event:"London CAB", customer:"Prasad Gupte",            title:"VP, Product",                       company:"Tonies",                arr:"$85K",  health:72, util:72,  products:["Analytics"],                                   renewal:"Oct 2026", mau:null, tickets:0},
+  {ae:"Javier Alvarado",  event:"London CAB", customer:"Chris Milne",             title:"Senior Product Analyst",            company:"CarWow",                arr:"$75K",  health:70, util:70,  products:["Analytics"],                                   renewal:"Nov 2026", mau:null, tickets:0},
+  {ae:"Sasha Navaseletskaya", event:"London CAB", customer:"Marti Colominas Gener", title:"VP, Head of Data/Insight",        company:"reMarkable",            arr:"$110K", health:75, util:75,  products:["Analytics"],                                   renewal:"Dec 2026", mau:null, tickets:0},
+  {ae:"Emrah Cetin",      event:"London CAB", customer:"Stas Fedyakov",           title:"Head of Analytics",                 company:"Tabby",                 arr:"$140K", health:74, util:74,  products:["Analytics"],                                   renewal:"Jan 2027", mau:null, tickets:0},
+
+  // ── LONDON EAB ─────────────────────────────────────────────────────────────
+  {ae:"Myriam Oukili",    event:"London EAB", customer:"Amandine Durr",           title:"Chief Product Officer",             company:"Back Market",           arr:"$380K", health:80, util:82,  products:["Analytics","Session Replay"],                  renewal:"Mar 2027", mau:null, tickets:0},
+  {ae:"Jacob Clarke",     event:"London EAB", customer:"Ian Saleh",               title:"VP of Data",                        company:"Dojo",                  arr:"$195K", health:76, util:76,  products:["Analytics"],                                   renewal:"Dec 2026", mau:null, tickets:0},
+  {ae:"Simon Khalighi",   event:"London EAB", customer:"Daragh Kelly",            title:"CDO",                               company:"The Economist Group",   arr:"$420K", health:82, util:82,  products:["Analytics","Session Replay"],                  renewal:"Jun 2027", mau:null, tickets:0},
+  {ae:"Niklas Fogander",  event:"London EAB", customer:"James Patterson",         title:"Head of Commercial & Marketing Data",company:"Volvo Cars",            arr:"$650K", health:80, util:80,  products:["Analytics","Session Replay","CDP"],            renewal:"Oct 2027", mau:null, tickets:0},
+  {ae:"Samuel Norca",     event:"London EAB", customer:"Alexis Druon",            title:"Co-founder & CTO",                  company:"Amo.co",                arr:"$110K", health:72, util:72,  products:["Analytics"],                                   renewal:"Sep 2026", mau:null, tickets:0},
+  {ae:"Simon Khalighi",   event:"London EAB", customer:"Josh Snow",               title:"Chief Product Officer",             company:"SkyShowtime",           arr:"$290K", health:78, util:78,  products:["Analytics","Session Replay"],                  renewal:"Dec 2026", mau:null, tickets:0},
+  {ae:"Paul Baier",       event:"London EAB", customer:"Barbara Koop",            title:"Head of Usability",                 company:"Philips",               arr:"$180K", health:75, util:75,  products:["Analytics"],                                   renewal:"Nov 2026", mau:null, tickets:0},
+  {ae:"Niklas Fogander",  event:"London EAB", customer:"Ana Sandra Ruiz",         title:"Head of Global Growth",             company:"Spotify",               arr:"$475K", health:62, util:6,   products:["Analytics","Session Replay","PSP"],             renewal:"Dec 2027", mau:1,    tickets:0, risk:"Critical — same Spotify account, 6% utilization"},
+  {ae:"Przemo Misior",    event:"London EAB", customer:"Michael Telfer",          title:"Head of Marketing Optimization",    company:"Pipedrive",             arr:"$320K", health:78, util:78,  products:["Analytics","Experiment"],                      renewal:"Jan 2027", mau:null, tickets:0},
+  {ae:"Przemo Misior",    event:"London EAB", customer:"Jonny Carroll",           title:"Chief Data and Analytics Officer",  company:"Pipedrive",             arr:"$320K", health:78, util:78,  products:["Analytics","Experiment"],                      renewal:"Jan 2027", mau:null, tickets:0},
+  {ae:"Massimo Osako",    event:"London EAB", customer:"Rowan Jacobson",          title:"VP of Data & Analytics",            company:"Job and Talent",        arr:"$145K", health:74, util:74,  products:["Analytics"],                                   renewal:"Oct 2026", mau:null, tickets:0},
+];
+
+
+// ── HELPERS ─────────────────────────────────────────────────────────────────
+const AC = [["#0052F2","#EEF3FF"],["#16A34A","#F0FDF4"],["#D97706","#FFFBEB"],["#7C3AED","#F5F3FF"],["#DB2777","#FDF2F8"],["#0891B2","#ECFEFF"],["#374151","#F3F4F6"],["#DC2626","#FEF2F2"]];
+function avc(n){return AC[n.split("").reduce((a,c)=>a+c.charCodeAt(0),0)%AC.length]}
+function ini(n){return n.trim().split(/\s+/).map(w=>w[0]).join("").slice(0,2).toUpperCase()}
+function hcl(s){return s>=75?"gr":s>=55?"am":"rd"}
+function parseJSON(s,def){try{return JSON.parse(s||"[]")}catch(e){return def}}
+function arrToNum(s){if(!s)return 0;return parseFloat(s.replace(/[$KMB,]/g,s=>s==="K"?"":(s==="M"?"000":(s==="B"?"000000":""))))||0}
+
+// ── STATE ────────────────────────────────────────────────────────────────────
+let allBriefs=[], fev="all", fex="all", fq="";
+
+function findBrief(a){
+  return allBriefs.find(b=>b.customer_name&&a.customer&&
+    b.customer_name.toLowerCase().trim()===a.customer.toLowerCase().trim())||null;
+}
+
+// ── LOAD ─────────────────────────────────────────────────────────────────────
+async function loadBriefs(){
+  document.getElementById("main").innerHTML='<div class="state-msg"><div class="spin"></div><div style="font-family:var(--font-h);font-size:17px;font-weight:700">Loading briefs…</div></div>';
+  document.getElementById("stat-bar").textContent="Loading…";
+  try{
+    const res=await fetch(SHEETS_URL+"?action=get_briefs");
+    const text=await res.text();
+    let d;try{d=JSON.parse(text)}catch(e){d={rows:[]}}
+    allBriefs=d.rows||[];
+  }catch(e){allBriefs=[]}
+  render();
+}
+
+// ── RENDER ───────────────────────────────────────────────────────────────────
+function render(){
+  const q=fq.toLowerCase();
+  const visible=ALL.filter(a=>{
+    const b=findBrief(a);
+    const em=b?(b.exec_matches_str||b.exec_matches||""):"";
+    if(fev!=="all"&&a.event!==fev)return false;
+    if(fex!=="all"&&!em.includes(fex))return false;
+    if(q&&![a.customer,a.company,a.ae].join(" ").toLowerCase().includes(q))return false;
+    return true;
+  });
+
+  const briefed=visible.filter(a=>findBrief(a)).length;
+  document.getElementById("stat-bar").innerHTML=`<strong>${visible.length}</strong> accounts &nbsp;·&nbsp; <strong style="color:var(--green)">${briefed}</strong> with brief`;
+
+  const main=document.getElementById("main");
+  main.innerHTML="";
+
+  // ── EXEC SPOTLIGHT ──
+  if(fex!=="all"){
+    const exec=EXECS.find(e=>e.id===fex);
+    if(exec) main.appendChild(buildExecSpotlight([exec], visible));
+  } else if(fev==="all"||fev) {
+    const relevantExecs=EXECS.filter(e=>{
+      if(fev==="all")return true;
+      return e.events.includes(fev);
+    });
+    main.appendChild(buildExecSpotlight(relevantExecs, visible));
+  }
+
+  // ── EVENT SECTIONS ──
+  const eventsToShow = fev==="all" ? EVENTS : EVENTS.filter(e=>e.key===fev);
+  eventsToShow.forEach(ev=>{
+    const cards=visible.filter(a=>a.event===ev.key);
+    if(cards.length===0)return;
+    const sec=document.createElement("div");
+    sec.className="event-section";
+    const briefedCount=cards.filter(a=>findBrief(a)).length;
+    sec.innerHTML=`
+      <div class="event-hdr">
+        <div class="event-dot" style="background:${ev.color}"></div>
+        <div class="event-title">${ev.icon} ${ev.key}</div>
+        <span class="event-count">${cards.length} attendees · ${briefedCount} briefed</span>
+        <span class="event-dates">${ev.dates}</span>
+      </div>
+      <div class="cards-grid" id="grid-${ev.key.replace(/\s+/g,'-')}"></div>
+    `;
+    main.appendChild(sec);
+    const grid=sec.querySelector(".cards-grid");
+    cards.forEach((a,i)=>{
+      grid.appendChild(buildCard(a, findBrief(a), i));
+    });
+  });
+
+  if(main.children.length===0||(main.children.length===1&&main.querySelector(".spotlight-wrap"))){
+    const empty=document.createElement("div");
+    empty.className="state-msg";
+    empty.innerHTML='<div style="font-size:32px">🔍</div><div style="font-family:var(--font-h);font-size:17px;font-weight:700">No results</div><div style="font-size:13px;color:var(--g60)">Try adjusting your filters.</div>';
+    main.appendChild(empty);
+  }
+}
+
+// ── EXEC SPOTLIGHT ────────────────────────────────────────────────────────────
+function buildExecSpotlight(execs, visible){
+  const wrap=document.createElement("div");
+  wrap.className="spotlight-wrap";
+  wrap.innerHTML=`
+    <div class="spotlight-title">Top Executive Connections</div>
+    <div class="spotlight-sub">Requested by account teams — customers AEs specifically asked each exec to connect with. Sorted by AE priority request, then ARR.</div>
+    <div class="exec-grid" id="exec-grid"></div>
+  `;
+  const grid=wrap.querySelector("#exec-grid");
+  execs.forEach(exec=>{
+    // Pull ONLY customers whose AE explicitly requested this exec in their brief
+    const assigned=visible.filter(a=>{
+      const b=findBrief(a);
+      if(!b)return false;
+      // Check exec_matches JSON array first (structured data)
+      let matched=false;
+      try{
+        const parsed=JSON.parse(b.exec_matches||"[]");
+        matched=parsed.some(e=>e.name&&e.name.includes(exec.id.split(" ")[0]));
+      }catch(e){}
+      // Fall back to string match on exec_matches_str
+      if(!matched){
+        const em=b.exec_matches_str||"";
+        matched=em.includes(exec.id);
+      }
+      return matched;
+    });
+
+    // Sort: first by whether AE left specific important_convos note (signal of priority),
+    // then by outcome field presence, then by ARR
+    const sorted=[...assigned].sort((a,b_)=>{
+      const ab=findBrief(a), bb=findBrief(b_);
+      const aHasConvo=ab&&ab.important_convos&&ab.important_convos.length>5?1:0;
+      const bHasConvo=bb&&bb.important_convos&&bb.important_convos.length>5?1:0;
+      if(bHasConvo!==aHasConvo)return bHasConvo-aHasConvo;
+      const aHasOutcome=ab&&ab.outcome&&ab.outcome!=="[skipped]"&&ab.outcome.length>5?1:0;
+      const bHasOutcome=bb&&bb.outcome&&bb.outcome!=="[skipped]"&&bb.outcome.length>5?1:0;
+      if(bHasOutcome!==aHasOutcome)return bHasOutcome-aHasOutcome;
+      // Tiebreak by ARR
+      const toNum=s=>parseFloat((s||"0").replace(/[$,]/g,"").replace("K","000").replace("M","000000"))||0;
+      return toNum(b_.arr)-toNum(a.arr);
+    }).slice(0,5);
+
+    const evBadges=exec.events.map(e=>{
+      const em=EVENTS.find(ev=>ev.key===e);
+      return em?`<span class="exec-ev-badge">${em.icon} ${em.key.replace("San Diego ","SD ").replace(" CAB","").replace(" EAB","")}</span>`:"";
+    }).join("");
+
+    const card=document.createElement("div");
+    card.className="exec-card";
+    card.innerHTML=`
+      <div class="exec-card-hdr">
+        <div class="exec-av">${ini(exec.id)}</div>
+        <div><div class="exec-nm">${exec.id}</div><div class="exec-role">${exec.role}</div></div>
+        <div class="exec-events">${evBadges}</div>
+      </div>
+      <div class="top5-list">
+        ${sorted.length===0
+          ?`<div class="no-assigns">No specific connection requests yet — populate as AEs submit briefs.</div>`
+          :sorted.map((a,i)=>{
+            const b=findBrief(a);
+            const risk=RISKS[a.company]||"";
+            // Show AE's specific note about this exec connection if they left one,
+            // otherwise show the desired outcome, otherwise show risk flag
+            const convoNote=b&&b.important_convos&&b.important_convos.length>5?b.important_convos.slice(0,100)+(b.important_convos.length>100?"…":""):null;
+            const outcomeNote=b&&b.outcome&&b.outcome!=="[skipped]"&&b.outcome.length>5?b.outcome.slice(0,90)+(b.outcome.length>90?"…":""):null;
+            const note=convoNote||outcomeNote||(risk?"⚠️ "+risk.slice(0,80):"");
+            const noteLabel=convoNote?"💬 AE note:":outcomeNote?"🎯 Goal:":"";
+            return `<div class="t5-item">
+              <div class="t5-rank">${i+1}</div>
+              <div class="t5-info">
+                <div class="t5-name">${a.customer}</div>
+                <div class="t5-co">${a.company} · ${a.event.replace("San Diego ","SD ").replace(" CAB"," CAB").replace(" EAB"," EAB")} · AE: ${a.ae.split(" ")[0]} ${a.ae.split(" ").slice(-1)[0]}</div>
+                ${note?`<div class="t5-note"><span style="font-weight:600;color:var(--blue);margin-right:3px">${noteLabel}</span>${note}</div>`:""}
+              </div>
+              <div class="t5-arr">${a.arr}</div>
+            </div>`;
+          }).join("")}
+      </div>
+    `;
+    grid.appendChild(card);
+  });
+  return wrap;
+}
+
+// ── CUSTOMER CARD ─────────────────────────────────────────────────────────────
+function buildCard(a, b, idx){
+  const [ac,ab_]=avc(a.customer);
+  const execNames=b?parseJSON(b.exec_matches,[]).map(e=>e.name).filter(Boolean):[];
+  const peers=b?parseJSON(b.peer_matches,[]).filter(p=>p&&p.name):[];
+  const prods=b&&b.rsvp_topics?b.rsvp_topics.split(";").map(s=>s.trim()).filter(Boolean):[];
+
+  const card=document.createElement("div");
+  card.className="ccard";
+  card.style.animationDelay=(idx*.03)+"s";
+  card.style.cursor="pointer";
+
+  card.innerHTML=`
+    <div class="ccard-top">
+      <div class="av" style="background:${ab_};color:${ac}">${ini(a.customer)}</div>
+      <div class="cinfo">
+        <div class="cname">${a.customer}</div>
+        <div class="ctitle">${a.title}</div>
+        <div class="cco">${a.company}</div>
+      </div>
+      <span class="chevron">▾</span>
+    </div>
+    <div class="ccard-meta">
+      <div class="cm"><div class="cm-l">ARR</div><div class="cm-v">${a.arr}</div></div>
+      <div class="cm"><div class="cm-l">Health</div><div class="cm-v ${hcl(a.health)}">${a.health}/100</div></div>
+      <div class="cm"><div class="cm-l">Brief</div><div class="cm-v ${b?"gr":"am"}">${b?"✓ Done":"Pending"}</div></div>
+    </div>
+    ${execNames.length>0?`<div style="padding:0 16px 10px;display:flex;gap:5px;flex-wrap:wrap;align-items:center">
+      <span style="font-size:9px;font-weight:700;color:var(--g40);letter-spacing:.07em;text-transform:uppercase">EXECS</span>
+      ${execNames.map(n=>`<span style="font-size:10px;font-weight:600;padding:2px 8px;border-radius:99px;background:var(--blue-dark);color:white">${n.split(" ")[0]}</span>`).join("")}
+    </div>`:""}
+    <div class="ccard-ae">AE: <span>${a.ae}</span>${CSA[a.id]?` <span style="color:var(--g40)">·</span> <span style="color:var(--g60)">CSA: ${CSA[a.id].split(" ")[0]} ${CSA[a.id].split(" ").slice(-1)[0]}</span>`:""}</div>
+    ${b?`
+    <div class="detail">
+      <div class="d-body">
+        ${b.outcome&&b.outcome!=="[skipped]"?`
+        <div class="d-sec">
+          <div class="d-lbl">🎯 Desired outcome</div>
+          <div class="d-txt">${b.outcome}</div>
+        </div>`:""}
+        ${b.anecdote&&b.anecdote!=="[skipped]"?`
+        <div class="d-sec">
+          <div class="d-lbl">💬 Talking points & anecdotes</div>
+          <div class="d-txt">${b.anecdote}</div>
+        </div>`:""}
+        ${b.avoid&&b.avoid!=="[skipped]"?`
+        <div class="d-sec">
+          <div class="d-lbl">🚫 Topics to avoid</div>
+          <div class="d-txt" style="background:rgba(220,38,38,0.05);border:1px solid rgba(220,38,38,0.15)">${b.avoid}</div>
+        </div>`:""}
+        ${b.wins&&b.wins!=="[skipped]"?`
+        <div class="d-sec">
+          <div class="d-lbl">⭐ Recent wins & highlights</div>
+          <div class="d-txt">${b.wins}</div>
+        </div>`:""}
+        ${peers.length>0?`
+        <div class="d-sec">
+          <div class="d-lbl">🤝 Suggested peer connections</div>
+          ${peers.map(p=>`<div class="peer-item"><div class="peer-nm">${p.name} · ${p.company||""}</div>${p.reason?`<div class="peer-rs">${p.reason}</div>`:""}</div>`).join("")}
+        </div>`:""}
+        ${b.important_convos&&b.important_convos.length>2?`
+        <div class="d-sec">
+          <div class="d-lbl">📌 Important conversations to engineer</div>
+          <div class="d-txt" style="border:1px solid rgba(0,82,242,0.2);background:rgba(0,82,242,0.04)">${b.important_convos}</div>
+        </div>`:""}
+        ${prods.length>0?`
+        <div class="d-sec">
+          <div class="d-lbl">💬 Topics they submitted at RSVP</div>
+          <div class="d-tags">${prods.map(t=>`<span class="d-tag">${t}</span>`).join("")}</div>
+        </div>`:""}
+        ${b.sfdc_corrections&&b.sfdc_corrections!=="null"&&b.sfdc_corrections.length>2?`
+        <div class="d-sec">
+          <div class="d-lbl">✏️ AE corrections to Salesforce data</div>
+          <div class="d-txt warn">${b.sfdc_corrections}</div>
+        </div>`:""}
+        <div style="margin-top:14px;padding-top:12px;border-top:1px solid var(--g10);display:flex;justify-content:space-between;align-items:center">
+          <span style="font-size:10px;color:var(--g40)">Submitted by ${a.ae}</span>
+          <span style="font-size:10px;color:var(--g40)">${b.submitted_at?new Date(b.submitted_at).toLocaleDateString("en-US",{month:"short",day:"numeric",hour:"2-digit",minute:"2-digit"}):""}</span>
+        </div>
+      </div>
+    </div>
+    `:`<div class="detail"><div class="d-body"><div class="no-brief">Brief not yet submitted by ${a.ae}. Check back after April 23.</div></div></div>`}
+  `;
+
+  // Entire card is clickable
+  card.addEventListener("click",()=>{
+    const isOpen=card.classList.toggle("open");
+    if(isOpen){
+      document.querySelectorAll(".ccard.open").forEach(c=>{
+        if(c!==card){c.classList.remove("open")}
+      });
+      card.scrollIntoView({behavior:"smooth",block:"nearest"});
+    }
+  });
+
+  return card;
+}
+
+// ── FILTERS ──────────────────────────────────────────────────────────────────
+document.querySelectorAll("[data-ev]").forEach(btn=>{
+  btn.addEventListener("click",()=>{
+    document.querySelectorAll("[data-ev]").forEach(b=>b.classList.remove("on"));
+    btn.classList.add("on"); fev=btn.dataset.ev; render();
+  });
+});
+document.querySelectorAll("[data-ex]").forEach(btn=>{
+  btn.addEventListener("click",()=>{
+    document.querySelectorAll("[data-ex]").forEach(b=>b.classList.remove("on"));
+    btn.classList.add("on"); fex=btn.dataset.ex; render();
+  });
+});
+document.getElementById("search-input").addEventListener("input",e=>{fq=e.target.value;render()});
+
+loadBriefs();
+</script>
+</body>
+</html>

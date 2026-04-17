@@ -393,6 +393,95 @@ function findBrief(a){
     b.customer_name.toLowerCase().trim()===a.customer.toLowerCase().trim())||null;
 }
 
+
+// ── DEMO DATA (remove once Workato integration is live) ──────────────────────
+const DEMO_BRIEFS = [
+  {
+    "customer_name": "Seth Stuck",
+    "customer_title": "VP, Product Research & Analytics",
+    "company": "FOX",
+    "event": "San Diego CAB",
+    "ae_name": "Mike Sullivan",
+    "arr": "$1.3M",
+    "health": 88,
+    "sfdc_verified": true,
+    "sfdc_corrections": null,
+    "anecdote": "Seth has been a champion internally for Amplitude \u2014 he personally drove the CDP + Session Replay expansion last year and loves showing it off to other execs. He's proud of their MAU growth (up 62% in 3mo) and will likely bring it up unprompted. Great opener: ask about how the FOX Sports app performed during the Super Bowl \u2014 Amplitude was central to their real-time analytics war room.",
+    "outcome": "Secure a co-development partnership conversation with Wade \u2014 FOX wants to be a design partner for next-gen funnel analytics. Also open the door to a contract upsell given they're 7% over event volume with renewal in Jun 2028.",
+    "avoid": "Do NOT mention the Q3 support escalation around CDP ingestion delays \u2014 it was resolved but Seth was personally frustrated. Also avoid any comparison to Adobe Analytics; they came from there and it's a sensitive topic.",
+    "wins": "Session Replay now live across 5 product teams. MAU up 62% in 3 months. They ran 14 A/B experiments during Super Bowl week using Amplitude Experiment \u2014 zero production issues. Seth presented Amplitude ROI to their CTO last month.",
+    "risks": null,
+    "peer_matches": "[{\"name\": \"Matt Luizzi\", \"company\": \"WHOOP\", \"reason\": \"Both are scaling analytics orgs inside large media/consumer brands. Seth is evaluating AI Feedback \\u2014 Matt already uses it and could speak to ROI.\"}, {\"name\": \"Amanda Hamilton\", \"company\": \"McClatchy\", \"reason\": \"Both run lean analytics teams supporting high-traffic digital properties. Amanda's CDP implementation story maps well to where FOX is heading.\"}]",
+    "exec_matches": "[{\"id\": \"wade\", \"name\": \"Wade Chambers\", \"title\": \"Chief Engineering Officer\"}, {\"id\": \"gab\", \"name\": \"Gab Menachem\", \"title\": \"Chief Product Officer\"}, {\"id\": \"chris\", \"name\": \"Chris Yu\", \"title\": \"VP, Product Management\"}]",
+    "important_convos": "Seth has been quietly asking about Amplitude's roadmap for AI-powered insights \u2014 specifically auto-generated anomaly summaries. Would love for him to get 15 mins with Gab to hear the vision firsthand. This could accelerate a co-development conversation.",
+    "rsvp_topics": "AI-powered analytics;Experiment at scale;CDP data governance;Real-time dashboards",
+    "submitted_at": "2026-04-15T14:32:00Z"
+  },
+  {
+    "customer_name": "Anne Billmeyer",
+    "customer_title": "Sr. Director, Insights & Experimentation",
+    "company": "FanDuel",
+    "event": "San Diego CAB",
+    "ae_name": "Greg Sharp",
+    "arr": "$5.4M",
+    "health": 80,
+    "sfdc_verified": true,
+    "sfdc_corrections": null,
+    "anecdote": "Anne is sharp, data-driven, and will ask hard product questions \u2014 she's earned the right to. FanDuel is our largest SD CAB account at $5.4M and they're only at 27% utilization, which she's aware of and embarrassed by internally. The story is org restructuring slowed adoption, not product dissatisfaction. She's now the DRI to fix this and is motivated. Lead with curiosity about her new mandate, not platitudes about the platform.",
+    "outcome": "Walk away with a concrete adoption acceleration plan she's willing to co-own. Get commitment to an EBR in May (overdue since Mar 2025). Secondary goal: introduce her to our PLG program \u2014 she'd be a perfect pilot customer.",
+    "avoid": "Do NOT bring up the March 2025 EBR that never happened \u2014 she already flagged it and is annoyed. Don't discuss pricing or contract terms at the event. Avoid anything that sounds like a product pitch \u2014 she wants partnership, not a sales conversation.",
+    "wins": "Guides & Surveys just went live for their onboarding funnel \u2014 early results show 18% improvement in activation. The experimentation team ran 40+ tests last quarter. Their data eng team gave Amplitude a strong internal NPS in a recent tool audit.",
+    "risks": "27% utilization on a $5.4M contract is the elephant in the room. 3 open support tickets currently. No EBR since March 2025.",
+    "peer_matches": "[{\"name\": \"Geoff Coyner\", \"company\": \"Qualtrics\", \"reason\": \"Both run experimentation-heavy analytics orgs. Geoff rebuilt their experimentation culture from scratch \\u2014 the playbook maps directly to what Anne is trying to do.\"}, {\"name\": \"Ajay Murali\", \"company\": \"Procore\", \"reason\": \"Procore is also working through an adoption challenge after a large platform deployment. A peer conversation about what's working could be valuable for both.\"}]",
+    "exec_matches": "[{\"id\": \"jenna\", \"name\": \"Jenna Elliott\", \"title\": \"SVP, Global Customer Success\"}, {\"id\": \"nate\", \"name\": \"Nate Crook\", \"title\": \"Chief Commercial Officer\"}]",
+    "important_convos": "Jenna should have a direct, honest conversation with Anne about the utilization gap and what Amplitude is prepared to do to fix it. Anne will respect candor over polish. This is a relationship-defining moment for this account.",
+    "rsvp_topics": "Driving adoption at scale;Experimentation maturity;Executive alignment for analytics;Making the case for data culture",
+    "submitted_at": "2026-04-16T09:15:00Z"
+  },
+  {
+    "customer_name": "Hima Chintalapati",
+    "customer_title": "Program Lead, Analytics",
+    "company": "IBM",
+    "event": "San Diego CAB",
+    "ae_name": "Greg Sharp",
+    "arr": "$1.5M",
+    "health": 85,
+    "sfdc_verified": true,
+    "sfdc_corrections": "Note: Hima was recently promoted \u2014 her title in Salesforce is out of date. She now leads the global analytics program across IBM Software, not just the Americas region. Please update.",
+    "anecdote": "Hima is one of our most technically sophisticated users \u2014 she runs a 1,000+ MAU deployment across multiple IBM product lines and has built custom integrations with Amplitude's API. She's presenting internally to IBM's CPTO next month on their analytics maturity journey and Amplitude is central to that story. Great conversation starter: what's the one chart she shows every executive who asks about product health?",
+    "outcome": "Lock in IBM as a reference customer for enterprise analytics at scale. Get commitment to a joint case study. Also explore expanding Session Replay to two additional IBM product lines currently on a legacy tool.",
+    "avoid": "Don't mention competitors by name \u2014 IBM has a strict vendor neutrality policy and Hima has to be careful. Also avoid discussing the PLG self-serve motion; IBM procurement doesn't allow it and it'll create confusion.",
+    "wins": "MAU up 69% in 3 months. Session Replay expanding across IBM Cloud and IBM Security product lines. Hima was nominated as an Amplitude Champion internally and has onboarded 3 other teams this quarter.",
+    "risks": "3 open tickets \u2014 one is a data export latency issue that engineering is tracking. Worth flagging to Wade if it comes up naturally.",
+    "peer_matches": "[{\"name\": \"Joseph Sansotta\", \"company\": \"TD Bank\", \"reason\": \"Both are running Amplitude inside large, regulated enterprises with complex data governance requirements. Parallel challenges around access controls and audit logging.\"}, {\"name\": \"Deepak Thakral\", \"company\": \"Udemy\", \"reason\": \"Deepak is scaling Amplitude across a large B2B SaaS org \\u2014 Hima's experience doing this at IBM would be directly useful for where Udemy is headed.\"}]",
+    "exec_matches": "[{\"id\": \"wade\", \"name\": \"Wade Chambers\", \"title\": \"Chief Engineering Officer\"}, {\"id\": \"eric\", \"name\": \"Eric Metelka\", \"title\": \"Dir, Product Management\"}, {\"id\": \"jacob\", \"name\": \"Jacob Newman\", \"title\": \"Principal Product Manager\"}]",
+    "important_convos": "Hima has specific product feedback on warehouse-native analytics \u2014 she's been waiting for a chance to share it directly with the product team. Eric and Jacob should carve out 20 mins with her; this is exactly the input that shapes the roadmap. She's a highly credible voice.",
+    "rsvp_topics": "Warehouse-native analytics;Enterprise data governance;Scaling Amplitude across business units;API and custom integrations",
+    "submitted_at": "2026-04-14T16:45:00Z"
+  },
+  {
+  "customer_name": "Amanda Hamilton",
+  "customer_title": "Sr. Director, Platform Operations",
+  "company": "McClatchy",
+  "event": "San Diego CAB",
+  "ae_name": "Grace Evans",
+  "arr": "$853K",
+  "health": 77,
+  "sfdc_verified": true,
+  "sfdc_corrections": null,
+  "anecdote": "Amanda is one of the most operationally sophisticated customers we have \u2014 she runs Amplitude as core infrastructure for McClatchy's 30+ local news properties, not just a product analytics tool. She's hit 100% event volume utilization and her team treats Amplitude like a utility. Great opener: ask how the midterm election coverage performed \u2014 they used Amplitude in real time to optimize content distribution across all properties simultaneously. She'll light up.",
+  "outcome": "Open the conversation about a contract expansion \u2014 they're at full utilization and MAU is up 26% in 3 months, so the timing is right. Also get a commitment to a co-marketing story: McClatchy using Amplitude across local media at scale is a compelling and underused narrative for us.",
+  "avoid": "Don't bring up the product gaps she flagged in the last EBR around multi-property rollup reporting \u2014 engineering is aware but there's no timeline yet. Don't overpromise on roadmap. Also avoid any conversation about layoffs in local news; McClatchy has had a tough couple of years publicly and it's a sensitive topic.",
+  "wins": "100% event volume utilization \u2014 they use every bit they pay for. MAU up 26% in 3 months. CDP live across all major properties. Guides & Surveys running across 4 editorial teams. Zero open support tickets. Amanda ran an internal Amplitude certification program for her analytics team.",
+  "risks": "Product gap around multi-property rollup views is a known friction point. If not addressed, could slow expansion conversation.",
+  "peer_matches": "[{\"name\": \"Seth Stuck\", \"company\": \"FOX\", \"reason\": \"Both are running Amplitude as core infrastructure for large media organizations. Seth's CDP implementation story is directly relevant to where McClatchy is heading, and Amanda's multi-property use case would interest Seth.\"}, {\"name\": \"Matt Luizzi\", \"company\": \"WHOOP\", \"reason\": \"Amanda built an internal Amplitude certification program \\u2014 Matt has been trying to do the same at WHOOP. A peer conversation about how she structured it would be immediately useful for him.\"}]",
+  "exec_matches": "[{\"id\": \"gab\", \"name\": \"Gab Menachem\", \"title\": \"Chief Product Officer\"}, {\"id\": \"jenna\", \"name\": \"Jenna Elliott\", \"title\": \"SVP, Global Customer Success\"}, {\"id\": \"ran\", \"name\": \"Ran Chen\", \"title\": \"Head of Growth, Product\"}]",
+  "important_convos": "Amanda has a specific ask around multi-property rollup reporting that she's been patient about for two quarters. Gab should acknowledge it directly and give her a straight answer on whether it's on the roadmap \u2014 she'll respect honesty far more than a vague 'we're looking into it.' This is the moment to either close the loop or reset expectations clearly.",
+  "rsvp_topics": "Multi-property analytics at scale;CDP implementation across distributed teams;Building an internal analytics culture;Content performance measurement",
+  "submitted_at": "2026-04-15T10:05:00Z"
+}
+];
+
 async function loadBriefs(){
   document.getElementById("main").innerHTML='<div class="state-msg"><div class="spin"></div><div style="font-family:var(--font-h);font-size:17px;font-weight:700">Loading briefs…</div></div>';
   document.getElementById("stat-bar").textContent="Loading…";
@@ -400,8 +489,8 @@ async function loadBriefs(){
     const res=await fetch(SHEETS_URL+"?action=get_briefs");
     const text=await res.text();
     let d;try{d=JSON.parse(text)}catch(e){d={rows:[]}}
-    allBriefs=d.rows||[];
-  }catch(e){allBriefs=[]}
+    allBriefs=[...(d.rows||[]), ...DEMO_BRIEFS];
+  }catch(e){allBriefs=[...DEMO_BRIEFS]}
   render();
 }
 
